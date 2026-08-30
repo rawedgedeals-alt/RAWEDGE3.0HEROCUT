@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rawedgedeals-alt.github.io/RAWEDGE3.0HEROCUT/sitemap.xml
