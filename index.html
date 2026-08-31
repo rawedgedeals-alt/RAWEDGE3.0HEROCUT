@@ -12,6 +12,18 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://rawedge-3-0-herocut.vercel.app/">
 <link rel="stylesheet" href="style.css">
+<style>
+/* RAWEDGE 3.0 HERO — oversized full-width treatment */
+.ad-hero{max-width:none;width:100%;margin:0;padding:0;background:#000;}
+.ad-hero-label{display:none;}
+.ad-hero-link{width:100%;display:block;border-radius:0;border:0;border-top:1px solid #20f59a55;overflow:hidden;background:#000;box-shadow:0 28px 100px #000,0 0 70px #20f59a25;}
+.ad-hero-link img{display:block;width:100%;height:auto;min-height:clamp(520px,calc(100vh - 110px),900px);object-fit:cover;object-position:center top;}
+@media(max-width:800px){
+  .ad-hero{margin:0;padding:0;}
+  .ad-hero-link{border-radius:0;}
+  .ad-hero-link img{width:100%;height:auto;min-height:0;object-fit:contain;object-position:center top;}
+}
+</style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
