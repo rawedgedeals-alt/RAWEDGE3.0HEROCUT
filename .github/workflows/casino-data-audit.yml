@@ -1,0 +1,23 @@
+name: Daily casino data audit
+on:
+  schedule:
+    - cron: '23 13 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'casinos.json'
+      - 'scripts/validate_casinos.py'
+      - '.github/workflows/casino-data-audit.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate casino records and flag stale offers
+        run: python scripts/validate_casinos.py
