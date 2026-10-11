@@ -54,6 +54,30 @@
       "affiliate_url": "https://record.betonlineaffiliates.ag/_U0BzdTjMAZX-a8CTELPmZWNd7ZgqdRLk/1/",
       "offer_label": "Visit casino",
       "offer_verified_at": null
+    },
+    {
+      "id": "rakebit",
+      "name": "Rakebit",
+      "category": "Online casino",
+      "rank": 5,
+      "tags": [
+        "Casino"
+      ],
+      "affiliate_url": "https://rake-tracker.com/dqai6fv9s",
+      "offer_label": "Visit casino",
+      "offer_verified_at": null
+    },
+    {
+      "id": "gamblezen",
+      "name": "Gamblezen",
+      "category": "Online casino",
+      "rank": 6,
+      "tags": [
+        "Casino"
+      ],
+      "affiliate_url": "https://gamblezens.com/afxfhfnxmg",
+      "offer_label": "Visit casino",
+      "offer_verified_at": null
     }
   ]
 }
