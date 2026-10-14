@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "notice": "Official public sources for change monitoring only; changes are not verified editorial claims.",
+  "notice": "Public operator-controlled pages for change detection; no independent verification implied. Gamblezen operator identity and source domain remain unresolved.",
   "sources": [
     {
       "casino_id": "luck-party",
@@ -26,6 +26,26 @@
       "casino_id": "yay-casino",
       "source_type": "state_changes",
       "url": "https://support.yaycasino.com/portal/en/kb/articles/yay-important-updates-for-tn-players"
+    },
+    {
+      "casino_id": "betonline",
+      "source_type": "terms",
+      "url": "https://www.betonline.ag/terms-conditions"
+    },
+    {
+      "casino_id": "betonline",
+      "source_type": "casino_rules",
+      "url": "https://help.betonline.ag/en/articles/185220-casino-rules"
+    },
+    {
+      "casino_id": "rakebit",
+      "source_type": "live_casino",
+      "url": "https://rakebit.com/livecasino/"
+    },
+    {
+      "casino_id": "rakebit",
+      "source_type": "payment_information",
+      "url": "https://rakebit.com/usdt-casino/"
     }
   ]
 }
