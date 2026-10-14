@@ -7,13 +7,14 @@ on:
     paths:
       - 'casinos.json'
       - 'scripts/validate_casinos.py'
+      - 'scripts/check_casino_links.py'
       - '.github/workflows/casino-data-audit.yml'
 permissions:
   contents: read
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,3 +22,13 @@ jobs:
           python-version: '3.12'
       - name: Validate casino records and flag stale offers
         run: python scripts/validate_casinos.py
+      - name: Check affiliate link reachability
+        run: python scripts/check_casino_links.py
+      - name: Save timestamped audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: casino-link-audit
+          path: audit-report.json
+          if-no-files-found: warn
+          retention-days: 30
