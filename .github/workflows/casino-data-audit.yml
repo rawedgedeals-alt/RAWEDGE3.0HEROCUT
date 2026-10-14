@@ -24,11 +24,11 @@ jobs:
         run: python scripts/validate_casinos.py
       - name: Check affiliate link reachability
         run: python scripts/check_casino_links.py
-      - name: Save timestamped audit evidence
+      - name: Build editorial review queue\n        run: python scripts/build_review_queue.py\n      - name: Save timestamped audit evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: casino-link-audit
-          path: audit-report.json
+          path: |\n            audit-report.json\n            review-queue.json
           if-no-files-found: warn
           retention-days: 30
