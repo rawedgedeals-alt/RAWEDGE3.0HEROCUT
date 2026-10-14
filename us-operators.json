@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-10-14",
+  "scope": "US-regulated real-money online casino research only. No sweepstakes/offshore offers included.",
+  "states": {
+    "Connecticut": {
+      "status": "regulated_live",
+      "source_url": "https://portal.ct.gov/dcp/gaming/legal-gaming-in-ct"
+    },
+    "Delaware": {
+      "status": "regulated_live",
+      "source_url": "https://www.delottery.com/More/iGaming"
+    },
+    "Michigan": {
+      "status": "regulated_live",
+      "source_url": "https://www.michigan.gov/en/mgcb/Resources/Legal-vs-Illegal-Gaming"
+    },
+    "New Jersey": {
+      "status": "regulated_live",
+      "source_url": "https://www.njoag.gov/about/divisions-and-offices/division-of-gaming-enforcement-home/internet-gaming-sites/"
+    },
+    "Pennsylvania": {
+      "status": "regulated_live",
+      "source_url": "https://gamingcontrolboard.pa.gov/interactive-gaming-operators"
+    },
+    "Rhode Island": {
+      "status": "regulated_live",
+      "source_url": "https://www.rilot.com/en-us/player-zone/faqs.html"
+    },
+    "West Virginia": {
+      "status": "regulated_live",
+      "source_url": "https://business.wvlottery.com/"
+    },
+    "Maine": {
+      "status": "authorized_not_launched",
+      "source_url": "https://www.maine.gov/dps/gcu/about/news-%26-events"
+    },
+    "Nevada": {
+      "status": "poker_only",
+      "source_url": "https://www.gaming.nv.gov/gaming-commission/online-gaming/"
+    }
+  },
+  "operators": [
+    {
+      "id": "betmgm",
+      "name": "BetMGM",
+      "available_states": [
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://www.michigan.gov/en/mgcb/Resources/Legal-vs-Illegal-Gaming",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "draftkings-casino",
+      "name": "DraftKings Casino",
+      "available_states": [
+        "Connecticut",
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://portal.ct.gov/dcp/gaming/legal-gaming-in-ct",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "fanduel-casino",
+      "name": "FanDuel Casino",
+      "available_states": [
+        "Connecticut",
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://portal.ct.gov/dcp/gaming/legal-gaming-in-ct",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "betrivers-casino",
+      "name": "BetRivers Casino",
+      "available_states": [
+        "Delaware",
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://www.delottery.com/More/iGaming",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "caesars-palace-online-casino",
+      "name": "Caesars Palace Online Casino",
+      "available_states": [
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://gamingcontrolboard.pa.gov/interactive-gaming-operators",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "golden-nugget-online-casino",
+      "name": "Golden Nugget Online Casino",
+      "available_states": [
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://www.michigan.gov/en/mgcb/Resources/Legal-vs-Illegal-Gaming",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "bet365-casino",
+      "name": "bet365 Casino",
+      "available_states": [
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://gamingcontrolboard.pa.gov/interactive-gaming-operators",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "fanatics-casino",
+      "name": "Fanatics Casino",
+      "available_states": [
+        "Michigan",
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://www.michigan.gov/en/mgcb/Resources/Legal-vs-Illegal-Gaming",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "bally-casino",
+      "name": "Bally Casino",
+      "available_states": [
+        "New Jersey",
+        "Pennsylvania"
+      ],
+      "source_url": "https://gamingcontrolboard.pa.gov/interactive-gaming-operators",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    },
+    {
+      "id": "hard-rock-bet-casino",
+      "name": "Hard Rock Bet Casino",
+      "available_states": [
+        "Michigan",
+        "New Jersey"
+      ],
+      "source_url": "https://www.michigan.gov/en/mgcb/Resources/Legal-vs-Illegal-Gaming",
+      "review_status": "regulator_listed_not_independently_tested",
+      "affiliate_status": "not_confirmed",
+      "affiliate_url": null,
+      "bonus_verified_at": null,
+      "payout_tested_at": null
+    }
+  ],
+  "disclosure": "Listed operator availability is a researched starting point, not a real-time license guarantee. State regulators, terms and geolocation must be checked. No affiliate relationships or payout tests claimed."
+}
