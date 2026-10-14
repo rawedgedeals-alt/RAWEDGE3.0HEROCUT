@@ -1,4 +1,4 @@
-/* RawEdge approved soundtrack player. Audio asset: rawedge-the-chase-v4.wav (upload to site root). Playback requires a user tap. */
+/* RawEdge approved soundtrack player. Audio asset: RawEdge_The_Chase_V4_With_Whispers.wav (upload to site root). Playback requires a user tap. */
 (()=>{
  const audio=new Audio('rawedge-the-chase-v4.wav');audio.loop=true;audio.preload='none';audio.volume=.65;
  const button=document.createElement('button');button.type='button';button.textContent='♫ PLAY RAWEDGE';button.setAttribute('aria-label','Play RawEdge soundtrack');button.style.cssText='position:fixed;right:16px;bottom:20px;z-index:9999;border:1px solid #37ffac;border-radius:40px;background:#071419;color:#76ffbe;padding:12px 17px;font:700 12px system-ui;letter-spacing:.08em;box-shadow:0 0 22px #00ed9a55;cursor:pointer';document.body.append(button);
