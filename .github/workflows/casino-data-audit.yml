@@ -26,8 +26,21 @@ jobs:
         run: python scripts/check_casino_links.py
       - name: Build editorial review queue
         run: python scripts/build_review_queue.py
+      - name: Restore previous official-source snapshots
+        uses: actions/cache/restore@v4
+        with:
+          path: source-snapshots/
+          key: source-snapshots-${{ github.run_id }}
+          restore-keys: |
+            source-snapshots-
       - name: Monitor approved official sources
         run: python scripts/monitor_official_sources.py
+      - name: Persist official-source snapshots for future comparisons
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: source-snapshots/
+          key: source-snapshots-${{ github.run_id }}
       - name: Save timestamped audit evidence
         if: always()
         uses: actions/upload-artifact@v4
