@@ -1,5 +1,31 @@
 {
   "schema_version": 1,
-  "notice": "Add only confirmed official public casino URLs. Never add affiliate tracking links. Empty until researched and approved.",
-  "sources": []
+  "notice": "Official public sources for change monitoring only; changes are not verified editorial claims.",
+  "sources": [
+    {
+      "casino_id": "luck-party",
+      "source_type": "sweepstakes_rules",
+      "url": "https://luckparty.com/sweeps-rules"
+    },
+    {
+      "casino_id": "luck-party",
+      "source_type": "promotions",
+      "url": "https://www.luckparty.com/promotions"
+    },
+    {
+      "casino_id": "american-luck",
+      "source_type": "terms",
+      "url": "https://americansluck.com/terms-and-conditions"
+    },
+    {
+      "casino_id": "yay-casino",
+      "source_type": "support",
+      "url": "https://support.yaycasino.com/portal/en/kb/articles/yay-what-products-services-or-experiences-does-yay-casino-offer"
+    },
+    {
+      "casino_id": "yay-casino",
+      "source_type": "state_changes",
+      "url": "https://support.yaycasino.com/portal/en/kb/articles/yay-important-updates-for-tn-players"
+    }
+  ]
 }
