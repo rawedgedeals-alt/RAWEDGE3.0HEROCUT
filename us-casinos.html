@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>US Online Casino Guide by State | RawEdge Casino Reviews</title>
+<meta name="description" content="Compare US-regulated online casino availability by state using regulator sources. Separate licensed casinos from sweepstakes and offshore offers.">
+<link rel="canonical" href="https://www.rawedgecasinoreviews.com/us-casinos.html"><link rel="stylesheet" href="style.css">
+<style>
+.us-wrap{max-width:1120px;margin:auto;padding:35px 22px 90px}.us-lead{max-width:780px;color:#c9d5d4;line-height:1.7}
+.us-note{border:1px solid #10b98188;background:#0a1b1b;padding:18px;border-radius:14px;margin:22px 0}
+.us-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin:24px 0}
+.us-card{background:#0b131b;border:1px solid #2a4045;border-radius:16px;padding:20px}
+.us-card h3{color:#eafff5;margin:0 0 12px}.us-card p{line-height:1.6;color:#d2dfdf}
+.us-card a{color:#44ffc0;text-decoration:underline}.us-badge{display:inline-block;font-size:.78rem;border:1px solid #10b981;border-radius:50px;padding:5px 9px;color:#a8ffdf}
+.us-select{padding:12px;background:#081820;color:white;border:1px solid #39e6aa;border-radius:9px;width:100%;max-width:440px}
+</style></head><body>
+<div class="topbar"><span>🔞 21+ where required; 18+ minimum</span><span>US online casino research</span><span>Affiliate disclosure: links may earn commissions</span></div>
+<header class="header"><a class="brand" href="index.html"><span class="logo">R</span><span>RAW<span>EDGE</span><small>CASINO REVIEWS</small></span></a><nav><a href="index.html">Home</a><a href="casinos.html">Casinos</a><a class="active" href="us-casinos.html">US by State</a><a href="how-we-rate.html">How We Rate</a></nav></header>
+<main class="us-wrap">
+<span class="eyebrow">RAWEDGE / AMERICA FIRST</span><h1>US online casinos.<br><em>Know your state before you play.</em></h1>
+<p class="us-lead">A licensed real-money casino, a sweepstakes casino, and an offshore casino are not the same thing. RawEdge keeps them separate. We do not assume an operator is legal in your state merely because it accepts a US signup.</p>
+<div class="us-note"><strong>Important:</strong> This is a research guide, not a legal determination or a live eligibility checker. State law and operator permissions change. Confirm the current regulator list and the operator's terms before playing. This page contains no unverified payout claims or paid rankings.</div>
+<h2>Choose your state</h2><label for="us-state">Find regulator information and next steps</label>
+<select id="us-state" class="us-select"><option value="">Select a US state…</option></select>
+<div id="us-result" class="us-note" aria-live="polite">Select your state to see the appropriate research guidance.</div>
+<h2>Where we start our research</h2>
+<div class="us-grid">
+<article class="us-card"><span class="us-badge">Regulator source</span><h3>New Jersey</h3><p>The NJ Division of Gaming Enforcement publishes an official list of approved internet gaming sites, including BetMGM, DraftKings, BetRivers and other brands.</p><a href="https://www.njoag.gov/about/divisions-and-offices/division-of-gaming-enforcement-home/internet-gaming-sites/" target="_blank" rel="noopener noreferrer">NJ approved gaming sites ↗</a></article>
+<article class="us-card"><span class="us-badge">National research</span><h3>All 50 states</h3><p>The American Gaming Association provides a state-by-state gaming map. Casino, sportsbook, online poker and sweepstakes rules must be checked separately.</p><a href="https://americangaming.org/research/state-of-play-map/" target="_blank" rel="noopener noreferrer">AGA state gaming map ↗</a></article>
+<article class="us-card"><span class="us-badge">Editorial policy</span><h3>What about sweepstakes?</h3><p>Some sweepstakes casino models face bans or enforcement actions. We don't label them “legal everywhere” or group them with state-licensed real-money casinos.</p><a href="how-we-rate.html">How RawEdge evaluates claims ↗</a></article>
+</div>
+<h2>Explore existing RawEdge listings</h2><p class="us-lead">Our current affiliate lineup is a separate <strong>research queue</strong>, not a list of approved US operators. Each offer needs state eligibility, licensing and terms verified before we can recommend it to residents of a particular state.</p><a class="btn primary" href="casinos.html">View current research queue →</a>
+</main>
+<footer><p class="legal">RawEdge provides information only, not legal advice. Availability is state-specific and may change. 21+ where required; play responsibly. Affiliate relationships never buy ranking positions.</p><a href="responsible-gambling.html">Responsible Gambling</a><p>© 2026 RawEdge</p></footer>
+<script>
+const names="Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|Indiana|Iowa|Kansas|Kentucky|Louisiana|Maine|Maryland|Massachusetts|Michigan|Minnesota|Mississippi|Missouri|Montana|Nebraska|Nevada|New Hampshire|New Jersey|New Mexico|New York|North Carolina|North Dakota|Ohio|Oklahoma|Oregon|Pennsylvania|Rhode Island|South Carolina|South Dakota|Tennessee|Texas|Utah|Vermont|Virginia|Washington|West Virginia|Wisconsin|Wyoming".split("|");
+const select=document.querySelector("#us-state"),result=document.querySelector("#us-result");
+for(const name of names){const opt=document.createElement("option");opt.value=name;opt.textContent=name;select.append(opt)}
+const regulator={ "New Jersey":["New Jersey Division of Gaming Enforcement","https://www.njoag.gov/about/divisions-and-offices/division-of-gaming-enforcement-home/internet-gaming-sites/"],"Michigan":["Michigan Gaming Control Board","https://www.michigan.gov/mgcb"],"Pennsylvania":["Pennsylvania Gaming Control Board","https://gamingcontrolboard.pa.gov/"],"Connecticut":["Connecticut Department of Consumer Protection Gaming Division","https://portal.ct.gov/dcp/gaming-division"],"Delaware":["Delaware Lottery","https://www.delottery.com/"],"West Virginia":["West Virginia Lottery","https://wvlottery.com/"],"Rhode Island":["Rhode Island Lottery","https://www.rilot.com/"],"Maine":["Maine Gambling Control Unit","https://www.maine.gov/dps/gamb-control/"],"Nevada":["Nevada Gaming Control Board (online poker rules differ from online casino gaming)","https://gaming.nv.gov/"]};
+select.addEventListener("change",()=>{result.replaceChildren();const state=select.value;if(!state){result.textContent="Select your state to see the appropriate research guidance.";return}const strong=document.createElement("strong");strong.textContent=state+" — verify before playing";result.append(strong);const p=document.createElement("p");p.textContent="Do not assume a casino is authorized in "+state+". Check current state law, approved operators, minimum age, location requirements and promotion terms. Sweepstakes and offshore offers require separate review.";result.append(p);const r=regulator[state];const a=document.createElement("a");a.target="_blank";a.rel="noopener noreferrer";a.href=r?r[1]:"https://americangaming.org/research/state-of-play-map/";a.textContent=r?"Open "+r[0]+" ↗":"Open US state-by-state gaming map ↗";a.style.color="#44ffc0";result.append(a)});
+</script></body></html>
