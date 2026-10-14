@@ -6,8 +6,8 @@ on:
   pull_request:
     paths:
       - 'casinos.json'
-      - 'scripts/validate_casinos.py'
-      - 'scripts/check_casino_links.py'
+      - 'official-sources.json'
+      - 'scripts/**'
       - '.github/workflows/casino-data-audit.yml'
 permissions:
   contents: read
@@ -24,11 +24,19 @@ jobs:
         run: python scripts/validate_casinos.py
       - name: Check affiliate link reachability
         run: python scripts/check_casino_links.py
-      - name: Build editorial review queue\n        run: python scripts/build_review_queue.py\n      - name: Save timestamped audit evidence
+      - name: Build editorial review queue
+        run: python scripts/build_review_queue.py
+      - name: Monitor approved official sources
+        run: python scripts/monitor_official_sources.py
+      - name: Save timestamped audit evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: casino-link-audit
-          path: |\n            audit-report.json\n            review-queue.json
+          name: casino-daily-audit
+          path: |
+            audit-report.json
+            review-queue.json
+            source-change-report.json
+            source-snapshots/
           if-no-files-found: warn
           retention-days: 30
