@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "updated_at": null,
+  "disclaimer": "Categories are navigational only; no current bonus, free spins, wagering terms, or state eligibility have been independently verified. Links lead to operator pages through existing affiliate tracking. Promotions must be verified before a bonus-specific claim is published.",
+  "categories": [
+    {
+      "id": "signup-spins",
+      "name": "Free Spins on Signup",
+      "description": "New-player spin promotions, when verified"
+    },
+    {
+      "id": "member-spins",
+      "name": "Free Spins for Members",
+      "description": "Promotions for existing accounts, when verified"
+    },
+    {
+      "id": "no-deposit",
+      "name": "No Deposit Bonuses",
+      "description": "Promotions that do not require a deposit, when verified"
+    },
+    {
+      "id": "deposit-match",
+      "name": "Deposit Match",
+      "description": "Deposit-linked offers, when verified"
+    },
+    {
+      "id": "daily-weekly",
+      "name": "Daily & Weekly Deals",
+      "description": "Recurring promotions, when verified"
+    },
+    {
+      "id": "vip",
+      "name": "VIP & Loyalty",
+      "description": "Returning-player benefits, when verified"
+    }
+  ],
+  "offers": []
+}
