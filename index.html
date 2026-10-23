@@ -31,6 +31,29 @@
   .ad-hero-link{border-radius:0;}
   .ad-hero-link img{width:100%;height:auto;min-height:0;object-fit:contain;object-position:center top;}
 }
+
+/* Founding-sponsor rocker: clearly available inventory, never a fake paid ad. */
+body{padding-bottom:120px}
+.re-bottom-rocker{position:fixed;inset:auto 0 0;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px clamp(18px,4vw,72px);min-height:104px;background:linear-gradient(103deg,#03110c 0%,#062c24 35%,#091827 71%,#1d0a2a 100%);border-top:2px solid #2dffab;box-shadow:0 -12px 48px #000e,0 0 55px #20f59a45;overflow:hidden}
+.re-bottom-rocker::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(115deg,transparent 0 70px,#42ffc30a 71px 73px,transparent 74px 120px)}
+.re-rocker-copy{position:relative;display:flex;flex-direction:column;gap:7px}
+.re-rocker-label{font-size:10px;letter-spacing:.19em;font-weight:900;color:#7fffd6}
+.re-rocker-copy strong{font-weight:1000;line-height:1.05;font-size:clamp(16px,2.6vw,30px);color:white;text-shadow:0 0 22px #04cf9b70}
+.re-rocker-copy strong em{font-style:normal;color:#36f7a9}
+.re-rocker-actions{display:flex;gap:12px;align-items:center;position:relative}
+.re-rocker-btn{background:#26ffab;color:#031c13!important;text-decoration:none;padding:16px 22px;font-size:13px;border-radius:9px;font-weight:1000;letter-spacing:.04em;white-space:nowrap;box-shadow:0 0 28px #2cffa664}
+.re-rocker-close{border:1px solid #9aeed266;background:#09151a;color:#effff7;border-radius:8px;width:38px;height:38px;font-size:23px;cursor:pointer}
+.re-rocker-closed .re-bottom-rocker{display:none}
+body:has(.re-bottom-rocker.re-hidden){padding-bottom:0}
+@media(max-width:680px){
+ body{padding-bottom:102px}
+ .re-bottom-rocker{min-height:93px;padding:10px 13px;gap:8px}
+ .re-rocker-label{font-size:8px;letter-spacing:.07em}
+ .re-rocker-copy strong{font-size:15px}
+ .re-rocker-btn{padding:11px 10px;font-size:10px}
+ .re-rocker-close{width:28px;height:32px;font-size:17px}
+ .re-rocker-actions{gap:6px}
+}
 </style>
 <script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
 <script defer src="/_vercel/insights/script.js"></script>
@@ -52,7 +75,8 @@
 <section class="stats"><div><strong>100%</strong><span>Scoring framework published</span></div><div><strong>6</strong><span>Core rating categories</span></div><div><strong>0</strong><span>Paid ranking positions</span></div><div><strong>24/7</strong><span>Research-first approach</span></div></section>
 <section class="section split"><div><span class="eyebrow">WHY RAWEDGE</span><h2>Know what you're actually signing up for.</h2><p>RawEdge puts important details in one place: offer terms, eligibility, payment information, game selection, support and player protections.</p><a class="btn primary" href="how-we-rate.html">How our scores work →</a></div><div class="feature-list"><div><b>01</b><span><strong>Real criteria</strong><small>Every score maps to published factors.</small></span></div><div><b>02</b><span><strong>No pay-to-rank</strong><small>Advertising doesn't buy a ranking.</small></span></div><div><b>03</b><span><strong>Plain English</strong><small>No buried terms or industry jargon.</small></span></div><div><b>04</b><span><strong>Player first</strong><small>Limits, protections and important catches stay visible.</small></span></div></div></section>
 <section class="conversion-banner" aria-label="RawEdge featured casino offers"><div class="conversion-glow glow-one"></div><div class="conversion-glow glow-two"></div><div class="conversion-top"><span>⚡ RAWEDGE DEAL DESK</span><small>SPONSORED / AFFILIATE OFFERS</small></div><div class="conversion-main"><div class="conversion-copy"><div class="conversion-kicker">KNOW THE TERMS. THEN MAKE YOUR MOVE.</div><h2>YOUR NEXT <em>CASINO EDGE</em> STARTS HERE.</h2><p>Compare current offers, terms, payout details and player protections before you register.</p><a class="conversion-btn" href="casinos.html">EXPLORE THE RAWEDGE →</a></div><div class="conversion-icons"><div class="neon-chip green-chip"><b>★</b><span>REAL<br>REVIEWS</span></div><div class="neon-chip gold-chip"><b>♛</b><span>SMART<br>OFFERS</span></div><div class="neon-chip cyan-chip"><b>⚡</b><span>FAST<br>RESEARCH</span></div></div></div><div class="conversion-bottom"><span>🔒 PLAYER-FIRST RESEARCH</span><span>◆ CLEAR SPONSORED LABELS</span><span>⚡ UPDATED WHEN VERIFIED</span><span>🔞 18+ PLAY RESPONSIBLY</span></div></section>
-<section class="newsletter"><div><span class="eyebrow">RAWEDGE ALERTS</span><h2>Get the good stuff. Skip the spam.</h2><p>New casino reviews, offer watch updates and research drops.</p></div><form onsubmit="subscribe(event)"><input required type="email" placeholder="Your email address"><button class="btn primary">Subscribe</button></form></section>
+<section class="newsletter"><div><span class="eyebrow">RAWEDGE ALERTS</span><h2>Research updates are coming.</h2><p>Our email list is not open yet. Follow the RawEdge channels for new guides and research; we will enable signups when secure subscriber storage is in place.</p></div><a class="btn primary" href="https://www.instagram.com/rawedgecasinodeals/" target="_blank" rel="noopener noreferrer">FOLLOW OUR UPDATES →</a></section>
 </main>
 <footer><div class="footer-brand"><span class="logo">R</span><div><b>RAWEDGE</b><small>CASINO REVIEWS</small></div></div><div class="footer-links"><a href="casinos.html">Casinos</a><a href="slots.html">Slots</a><a href="guides.html">Guides</a><a href="how-we-rate.html">How We Rate</a><a href="about.html">About</a><a href="advertise.html">Advertise</a><a href="responsible-gambling.html">Responsible Gambling</a></div><p class="legal">RawEdge is an independent informational and affiliate website. Availability, bonuses, licensing and terms can change. Always verify details with the operator before registering or depositing. 18+ only.</p><p>© 2026 RawEdge. All rights reserved.</p></footer>
+<aside class="re-bottom-rocker" aria-label="RawEdge advertising space available"><div class="re-rocker-copy"><span class="re-rocker-label">⚡ PREMIUM AD SPACE • CURRENTLY AVAILABLE</span><strong>MAKE YOUR BRAND <em>IMPOSSIBLE TO MISS.</em></strong></div><div class="re-rocker-actions"><a class="re-rocker-btn" href="advertise.html">RESERVE YOUR SPOT →</a><button class="re-rocker-close" type="button" aria-label="Dismiss advertisement" onclick="document.querySelector('.re-bottom-rocker').classList.add('re-hidden');document.body.style.paddingBottom='0';">×</button></div></aside>
 <script src="app.js"></script><script defer src="rawedge-sound.js"></script></body></html>
