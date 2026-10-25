@@ -1,0 +1,4 @@
+{
+  "description": "Only add operator-approved HTTPS JSON feed URLs after confirming the publisher and schema. Empty until approved feeds are available.",
+  "sources": []
+}
