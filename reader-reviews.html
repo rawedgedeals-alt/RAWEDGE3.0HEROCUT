@@ -73,7 +73,7 @@ footer{border-top:1px solid #346b51;padding:28px 19px;text-align:center;color:#c
 <h1>YOU WERE THERE.<br><em>TELL US WHAT HAPPENED.</em></h1>
 <p class="lead">Had a smooth withdrawal? A support nightmare? Confusing bonus rules? Maybe something surprisingly good? We want the firsthand story, not just another casino's marketing slogan.</p>
 <p class="promise">THE GOOD. THE BAD. THE IN-BETWEEN. ALL ARE WELCOME.</p>
-<div class="actions"><a class="btn" href="#submit">SHARE MY EXPERIENCE →</a><a class="btn alt" href="#community">READ READER EXPERIENCES →</a></div>
+<div class="actions"><a class="btn" href="#submit">LEAVE YOUR EXPERIENCE →</a><a class="btn alt" href="#community">READ WHAT OTHERS ARE SAYING →</a></div>
 <div class="feature-strip">
 <div><strong>REAL</strong>Share a firsthand experience—not something you've heard secondhand.</div>
 <div><strong>FAIR</strong>Positive and negative accounts have the same chance of publication.</div>
@@ -82,7 +82,7 @@ footer{border-top:1px solid #346b51;padding:28px 19px;text-align:center;color:#c
 <section id="submit" class="panel" aria-labelledby="submit-title">
 <span class="kicker">FREE TO PARTICIPATE · NO CASINO ACCOUNT REQUIRED</span>
 <h2 id="submit-title">Leave your personal experience.</h2>
-<p>Fill this out in your own words. Your device will prepare an email you can review and send to the RawEdge team. <strong>Nothing is submitted until you send that email.</strong> Publication requires moderation and is never guaranteed.</p>
+<p>Write it in your own words and hit <strong>POST MY EXPERIENCE</strong>. We securely save your submission, give you a receipt, and display it back to you immediately. It appears on the public wall after moderation—so everyone can see genuine reader contributions, not made-up testimonials.</p>
 <form id="story-form" novalidate>
 <div class="grid">
 <div class="field"><label for="casino">Which casino or platform? *</label>
@@ -110,12 +110,20 @@ footer{border-top:1px solid #346b51;padding:28px 19px;text-align:center;color:#c
 <div class="notice"><strong>Protect your privacy:</strong> Do not include full names, account or card numbers, bank information, passwords, private addresses, identification documents, or another person's personal information. We may edit submissions to remove sensitive details or decline unsupported accusations. We never accept payment for positive reviews.</div>
 <div class="consent"><input id="consent" type="checkbox" required><label for="consent">I personally experienced what I described. I understand my story may be edited for clarity or privacy and, if approved, published with my chosen nickname. I can ask RawEdge to correct or remove it.</label></div>
 <div class="form-actions">
-<button type="submit" class="primary">OPEN MY EMAIL DRAFT →</button>
+<button type="submit" class="primary" id="submit-story">POST MY EXPERIENCE →</button>
 <button type="button" class="secondary" id="copy-story">COPY MY EXPERIENCE →</button>
 </div>
 <p class="status" id="form-status" role="status" aria-live="polite"></p>
 </form>
-<p class="note">Current submission method: email app, not automatic website storage. If your email app doesn't open, use Copy My Experience and send the text to the contact address shown. Reader submissions are handled separately from casino sponsorship decisions.</p>
+<section id="mine" class="panel" aria-labelledby="mine-title" hidden>
+<span class="kicker">YOUR EXPERIENCE COUNTS · SUBMISSION SAVED</span>
+<h2 id="mine-title">Here's what you shared with RawEdge.</h2>
+<p id="mine-explain">Your story has been saved and is awaiting public approval.</p>
+<div id="mine-card" class="review-card"></div>
+<div class="actions"><a class="btn" href="#community">READ WHAT OTHERS ARE SAYING →</a><a class="btn alt" href="#submit">LEAVE ANOTHER EXPERIENCE →</a></div>
+<p class="note">Your private receipt stays in this browser. Don't share it. Your account will be publicly visible only once approved, with your chosen nickname.</p>
+</section>
+<p class="note">RawEdge saves submissions in private storage. Your own story appears below after saving and stays accessible from this browser. Everyone else can read it after editorial approval. Please leave out personal or confidential information.</p>
 </section>
 <section id="community" aria-labelledby="community-heading">
 <div class="feed-top"><div><span class="kicker">READER ACCOUNTS · MODERATED BEFORE PUBLICATION</span><h2 id="community-heading">What other readers are saying.</h2></div><div class="filter"><label for="search">Find a casino</label><input id="search" type="search" placeholder="Search published experiences…" autocomplete="off"></div></div>
@@ -130,74 +138,95 @@ footer{border-top:1px solid #346b51;padding:28px 19px;text-align:center;color:#c
 (function(){
 "use strict";
 const get=id=>document.getElementById(id);
-const form=get("story-form"),status=get("form-status"),reviews=get("reviews");
-const email="advertising@rawedgecasinoreviews.com";
-const params=new URLSearchParams(location.search);
-const preselect=params.get("casino");
-if(preselect&&preselect.length<=90)get("casino").value=preselect;
-get("story").addEventListener("input",()=>get("story-length").textContent=String(get("story").value.length));
-function info(){
+const form=get('story-form'),status=get('form-status'),submit=get('submit-story');
+const reviewList=get('reviews'),mine=get('mine'),mineCard=get('mine-card'),receiptKey='rawedge_my_reader_receipt_v1';
+const params=new URLSearchParams(location.search),chosen=params.get('casino');
+if(chosen&&chosen.length<=90)get('casino').value=chosen;
+get('story').addEventListener('input',()=>get('story-length').textContent=String(get('story').value.length));
+function val(){
  if(!form.checkValidity()){form.reportValidity();return null;}
- const casino=get("casino").value.trim(),category=get("category").value,sentiment=get("sentiment").value,
- month=get("month").value,alias=get("alias").value.trim()||"Anonymous reader",result=get("result").value,story=get("story").value.trim();
- if(casino.length<2||story.length<60){status.textContent="Enter a casino name and at least 60 characters describing a firsthand experience.";return null;}
- if(/(?:\b\d[\s-]?){12,19}\b/.test(story)||/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i.test(story)){status.textContent="Your story appears to contain a long number or email address. Please remove private details first.";return null;}
- const content=[
- "RAWEDGE FIRSTHAND READER EXPERIENCE","Casino/platform: "+casino,"Topic: "+category,
- "Experience: "+sentiment,"Approximate month: "+(month||"Not provided"),
- "Chosen public nickname: "+alias,"Outcome: "+result,
- "Firsthand account:\n"+story,
- "Declaration: Submitted as my own firsthand experience; I consent to moderation and potential publication after review.",
- "For editorial intake only. Not a paid advertising request."
- ].join("\n\n");
- return {content,casino,subject:"RawEdge Reader Experience — "+casino};
+ const casino=get('casino').value.trim(),category=get('category').value,
+ sentiment=get('sentiment').value,experience_month=get('month').value,
+ alias=get('alias').value.trim()||'Anonymous reader',outcome=get('result').value,story=get('story').value.trim();
+ if(casino.length<2||story.length<60){status.textContent='Please enter a casino and at least 60 characters about your firsthand experience.';return null;}
+ if(/(?:\b\d[\s-]?){12,19}\b/.test(story)||/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i.test(story)||/(?:https?:\/\/|www\.)/i.test(story)){
+  status.textContent='Remove account numbers, email addresses, and links first.';return null;
+ }
+ return {casino,category,sentiment,experience_month,alias,outcome,story};
 }
-form.addEventListener("submit",event=>{
- event.preventDefault();const a=info();if(!a)return;
- const dest="mailto:"+email+"?subject="+encodeURIComponent(a.subject)+"&body="+encodeURIComponent(a.content);
- if(dest.length>7500){status.textContent="This draft is too long for reliable email links. Please use Copy My Experience and paste it into an email to "+email+".";return;}
- status.textContent="Your email app should open with the draft. Review it and tap SEND; nothing is submitted yet.";
- if(typeof window.gtag==="function")window.gtag("event","rawedge_reader_draft_open",{topic:get("category").value});
- location.href=dest;
-});
-get("copy-story").addEventListener("click",async()=>{
- const a=info();if(!a)return;
+function el(tag,txt,cls){const x=document.createElement(tag);if(cls)x.className=cls;x.textContent=txt||'';return x;}
+function mySubmission(x){
+ mine.hidden=false;
+ const date=x.created_at?new Date(x.created_at).toLocaleDateString():'Recently';
+ const pending=x.status==='pending';
+ get('mine-explain').textContent=pending?'Saved '+date+'. Your story is in the review queue. You can read it here now; everyone else can read it once a moderator approves it.':
+  'Your story was saved. Current publication status: '+x.status+'.';
+ mineCard.replaceChildren(
+  el('div',pending?'SAVED · PENDING PUBLIC APPROVAL':'STATUS: '+String(x.status).toUpperCase(),'review-tag'),
+  el('h3',x.casino),
+  el('small',[x.category,x.sentiment,x.outcome].filter(Boolean).join(' · ')),
+  el('p',x.story),
+  el('small','Your public display name: '+x.alias));
+}
+async function recover(){
+ let receipt;try{receipt=localStorage.getItem(receiptKey)}catch(_){return}
+ if(!receipt||!/^[a-f0-9]{48}$/.test(receipt))return;
  try{
-  if(navigator.clipboard&&window.isSecureContext){
-   await navigator.clipboard.writeText("To: "+email+"\nSubject: "+a.subject+"\n\n"+a.content);
-   status.textContent="Copied. Paste this into your email app and send to "+email+".";
-  }else status.textContent="Clipboard unavailable. Use Open My Email Draft, or select your text manually.";
- }catch(_){status.textContent="Copy was blocked by the browser. Try Open My Email Draft.";}
+  const response=await fetch('/api/reader-experiences?receipt='+encodeURIComponent(receipt),{cache:'no-store'});
+  if(!response.ok)return;
+  const record=await response.json();mySubmission(record);
+ }catch(_){}
+}
+form.addEventListener('submit',async event=>{
+ event.preventDefault();
+ const payload=val();if(!payload)return;
+ submit.disabled=true;submit.textContent='SAVING YOUR EXPERIENCE…';status.textContent='Saving your story to RawEdge…';
+ try{
+  const response=await fetch('/api/reader-experiences',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',
+   body:JSON.stringify(payload)});
+  let result;try{result=await response.json()}catch(_){result={error:'Unable to read the server response.'}}
+  if(!response.ok||!result.id||!result.created_at)throw Error(result.error||'Your story was not saved.');
+  try{localStorage.setItem(receiptKey,result.id)}catch(_){}
+  status.textContent='SAVED! You can read your submission below. We review it before it appears on the public wall.';
+  mySubmission({...payload,id:result.id,status:result.status,created_at:result.created_at});
+  if(typeof window.gtag==='function')window.gtag('event','rawedge_reader_submitted',{category:payload.category});
+  form.reset();get('story-length').textContent='0';
+  mine.scrollIntoView({behavior:'auto',block:'start'});
+ }catch(error){status.textContent='NOT SAVED: '+String(error.message||'Try again.');}
+ finally{submit.disabled=false;submit.textContent='POST MY EXPERIENCE →';}
+});
+get('copy-story').addEventListener('click',async()=>{
+ const data=val();if(!data)return;
+ const text=['RAWEDGE FIRSTHAND EXPERIENCE','Casino: '+data.casino,'Topic: '+data.category,'Experience: '+data.sentiment,
+  'Month: '+(data.experience_month||'Not provided'),'Nickname: '+data.alias,'Outcome: '+data.outcome,'Story:',data.story].join('\n');
+ try{await navigator.clipboard.writeText(text);status.textContent='Copied your experience to clipboard. This does NOT post or save it.'}
+ catch(_){status.textContent='Copy unavailable. Use POST MY EXPERIENCE to save your story.'}
 });
 let entries=[];
 function draw(){
- const term=get("search").value.trim().toLowerCase();
- const visible=entries.filter(x=>x.casino.toLowerCase().includes(term));
- reviews.replaceChildren();
+ const term=get('search').value.trim().toLowerCase(),visible=entries.filter(x=>x.casino.toLowerCase().includes(term));
+ reviewList.replaceChildren();
  if(!visible.length){
-  const d=document.createElement("div");d.className="empty";
-  const t=document.createElement("strong");t.textContent=entries.length?"No published experiences match that casino yet.":"Be one of the first to share a firsthand experience.";
-  const p=document.createElement("p");p.textContent=entries.length?"Try another casino, or leave your own account above.":"The public wall is empty until a real reader submits an experience and it passes editorial moderation. RawEdge will not invent community reviews to fill the space.";
-  const a=document.createElement("a");a.href="#submit";a.textContent="SHARE YOUR EXPERIENCE →";
-  d.append(t,p,a);reviews.append(d);return;
+  const box=el('div','','empty');
+  box.append(el('strong',entries.length?'No matching published experiences yet.':'Your story could be the first one here.'),
+    el('p',entries.length?'Try a different casino or leave your own experience above.':'No public experiences have been approved yet. Reader stories appear here after moderation—never made up to make the site look busy.'));
+  const a=el('a','LEAVE YOUR EXPERIENCE →');a.href='#submit';box.append(a);reviewList.append(box);return;
  }
- for(const x of visible){
-  const card=document.createElement("article");card.className="review-card";
-  const tag=document.createElement("div");tag.className="review-tag";tag.textContent="READER-SUBMITTED ACCOUNT · NOT INDEPENDENTLY VERIFIED";
-  const h=document.createElement("h3");h.textContent=x.casino;
-  const meta=document.createElement("small");
-  meta.textContent=[x.sentiment,x.category,x.experience_month?"Experience: "+x.experience_month:null,x.published_at?"Published: "+x.published_at:null].filter(Boolean).join(" · ");
-  const story=document.createElement("p");story.textContent=x.story;
-  const author=document.createElement("small");author.textContent="Submitted by "+(x.alias||"Anonymous reader")+" · "+(x.outcome||"Outcome not stated");
-  card.append(tag,h,meta,story,author);reviews.append(card);
- }
+ visible.forEach(x=>{
+  const card=el('article','','review-card');
+  card.append(el('div','READER ACCOUNT · NOT INDEPENDENTLY VERIFIED','review-tag'),
+   el('h3',x.casino),
+   el('small',[x.sentiment,x.category,x.experience_month?'Experience '+x.experience_month:null,x.published_at?'Published '+x.published_at:null].filter(Boolean).join(' · ')),
+   el('p',x.story),
+   el('small','Shared by '+(x.alias||'Anonymous reader')+' · '+(x.outcome||'Outcome not given')));
+  reviewList.append(card);
+ });
 }
-get("search").addEventListener("input",draw);
-fetch("reader-reviews.json",{cache:"no-store"}).then(r=>{if(!r.ok)throw Error("Unavailable");return r.json()}).then(d=>{
- if(!Array.isArray(d.experiences))throw Error("Invalid feed");
- entries=d.experiences.filter(x=>x&&typeof x.casino==="string"&&typeof x.story==="string"&&x.status==="approved"&&x.story.length<5000);
- draw();
-}).catch(()=>{reviews.replaceChildren();const div=document.createElement("div");div.className="empty";div.textContent="Reader experiences are temporarily unavailable. Please check back.";reviews.append(div);});
+get('search').addEventListener('input',draw);
+fetch('/api/public-reader-experiences',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Offline');return r.json()})
+.then(data=>{if(!Array.isArray(data.experiences))throw Error('Invalid');entries=data.experiences.filter(x=>x&&typeof x.casino==='string'&&typeof x.story==='string');draw()})
+.catch(()=>{reviewList.replaceChildren(el('div','The reader wall is temporarily unavailable. Please check back.','empty'))});
+recover();
 })();
 </script>
 </body></html>
