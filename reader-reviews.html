@@ -141,7 +141,7 @@ const get=id=>document.getElementById(id);
 const form=get('story-form'),status=get('form-status'),submit=get('submit-story');
 const reviewList=get('reviews'),mine=get('mine'),mineCard=get('mine-card'),receiptKey='rawedge_my_reader_receipt_v1';
 const params=new URLSearchParams(location.search),chosen=params.get('casino');
-if(chosen&&chosen.length<=90)get('casino').value=chosen;
+if(chosen&&chosen.length<=90){get('casino').value=chosen;if(location.hash==='#community')get('search').value=chosen;}
 get('story').addEventListener('input',()=>get('story-length').textContent=String(get('story').value.length));
 function val(){
  if(!form.checkValidity()){form.reportValidity();return null;}
