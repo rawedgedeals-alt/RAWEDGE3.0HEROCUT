@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "last_evidence_reviewed_at": null,
+  "editorial_policy": "The review is published whether an operator buys a clearly labeled advertisement or not. Unknown figures are never filled with estimates.",
+  "records": [
+    {
+      "id": "yabby-casino-review",
+      "name": "Yabby Casino",
+      "type": "Real-money",
+      "profile": "yabby-casino-review.html",
+      "research": "Published profile",
+      "primary_sources_verified": false,
+      "deposit_tested": false,
+      "withdrawal_tested": false,
+      "median_withdrawal_minutes": null
+    },
+    {
+      "id": "limitless-casino-review",
+      "name": "Limitless Casino",
+      "type": "Real-money",
+      "profile": "limitless-casino-review.html",
+      "research": "Published profile",
+      "primary_sources_verified": false,
+      "deposit_tested": false,
+      "withdrawal_tested": false,
+      "median_withdrawal_minutes": null
+    },
+    {
+      "id": "brango-casino-review",
+      "name": "Brango Casino",
+      "type": "Real-money",
+      "profile": "brango-casino-review.html",
+      "research": "Published profile",
+      "primary_sources_verified": false,
+      "deposit_tested": false,
+      "withdrawal_tested": false,
+      "median_withdrawal_minutes": null
+    },
+    {
+      "id": "orbit-spins-casino-review",
+      "name": "Orbit Spins Casino",
+      "type": "Real-money",
+      "profile": "orbit-spins-casino-review.html",
+      "research": "Published profile",
+      "primary_sources_verified": false,
+      "deposit_tested": false,
+      "withdrawal_tested": false,
+      "median_withdrawal_minutes": null
+    }
+  ]
+}
