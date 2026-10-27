@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "casino-bonus-wagering-requirements-explained",
+    "title": "Casino Bonus Wagering Requirements: How to Read the Numbers",
+    "summary": "A practical explanation of wagering multipliers, bonus restrictions, and why a headline percentage is only the starting point for evaluating an offer.",
+    "social_hook": "That 200% bonus may not mean what you think.",
+    "source_notes": "Internal RawEdge bonus wagering calculator and casino-bonus-terms.html explain deposit matches, wagering multipliers, maximum cashout, and eligibility. This is conceptual math only; examples are hypothetical, not live offers.",
+    "outline": [
+      "What a wagering requirement means",
+      "Worked example",
+      "Other conditions and restrictions",
+      "How to check before opting in"
+    ],
+    "editorial_approved": true,
+    "publish_at": "2026-10-27T08:00:00-05:00",
+    "body": "## The headline is not the whole offer\n\nA bonus advertised as a percentage of a deposit can be attractive on the surface, but the percentage alone does not tell you what conditions apply. Before deciding whether an offer is relevant, look for the wagering requirement, eligible games, withdrawal restrictions, maximum cashout, expiration date and jurisdiction rules. These details can matter more than the size of a promotional headline.\n\n## What a wagering multiplier means\n\nA wagering multiplier describes how much play an operator requires before certain bonus-linked funds may be withdrawn, if withdrawal is allowed under that offer. The calculation may be based on the bonus amount, the deposit plus bonus, or another basis explicitly defined by the operator. Do not assume two offers use the same calculation.\n\nFor a purely hypothetical example, imagine a $50 bonus with a 30-times bonus-only wagering requirement. The stated playthrough would be $50 multiplied by 30, or $1,500 in total qualifying wagers. That is not a prediction of how much money you will win or lose, and it does not mean a player should attempt to wager that amount. It is only an illustration of how the requirement is expressed.\n\n## Check what counts toward the requirement\n\nSome bonus terms may treat slots, table games and other games differently. A game might count only part of each wager, or not count at all. Operators may also set bet-size caps while a bonus is active. Breaking those rules may affect eligibility for withdrawal. The operator's written terms, rather than a banner, should be the reference point.\n\n## Look for limits beyond wagering\n\nOther conditions can include a maximum amount that can be withdrawn from bonus-related winnings, minimum or maximum deposit amounts, an expiration deadline, identity verification and restrictions by state or country. A no-deposit or free-spins promotion can still include conditions. Eligibility and age requirements can also differ by jurisdiction.\n\n## Compare using actual terms\n\nWrite down the offer's calculation basis, multiplier, permitted games, bet limit, cashout cap and deadline. If a clause is missing or hard to find, treat the offer as unclear rather than filling the gap with a guess. Use RawEdge's bonus calculator to understand hypothetical wagering arithmetic; it does not validate any live operator offer.\n\n## The RawEdge standard\n\nRawEdge does not claim that bonuses improve the odds of making money. Casino games carry financial risk, and no promotional amount guarantees a withdrawal. Check current operator terms, make decisions within your limits and consult local rules before considering an offer."
+  },
+  {
+    "slug": "casino-withdrawal-processing-vs-delivery",
+    "title": "Casino Withdrawals: Processing Time vs. Delivery Time",
+    "summary": "Understand the different stages of an online casino withdrawal request and how to evaluate speed claims without relying on an advertised headline.",
+    "social_hook": "A 'fast payout' claim can leave out the biggest delay.",
+    "source_notes": "Internal RawEdge withdrawal-processing-guide.html and casino-payouts.html distinguish request submission, operator review, verification, and payment-network delivery. No verified operator-specific times provided.",
+    "outline": [
+      "What happens after withdrawal request",
+      "KYC and documentation",
+      "How payment method changes timing",
+      "Proof to keep"
+    ],
+    "editorial_approved": false
+  },
+  {
+    "slug": "checking-online-casino-eligibility",
+    "title": "How to Check Whether an Online Casino Is Available in Your State",
+    "summary": "A step-by-step checklist for separating advertising claims from actual eligibility, licensing, and location restrictions in the United States.",
+    "social_hook": "Seeing an online casino ad does NOT prove it is allowed in your state.",
+    "source_notes": "Internal RawEdge us-casinos.html and responsible-gambling.html distinguish state-regulated online casinos, offshore operators, and sweepstakes prize-redemption platforms. State laws and terms can change.",
+    "outline": [
+      "Know which model the site operates",
+      "Verify the state regulator",
+      "Review eligibility rules",
+      "Check for responsible-play tools"
+    ],
+    "editorial_approved": false
+  }
+]
