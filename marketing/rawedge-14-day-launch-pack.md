@@ -48,7 +48,7 @@ Caption: "Casino licensing is a fact to verify, not a badge to assume."
 CTA: Real-money research directory.
 
 ### Day 5 — Nobody buys our opinion
-Hook: "CAN A CASINO BUY RANKEd #1?" → "NOT HERE."
+Hook: "CAN A CASINO BUY RANK #1?" → "NOT HERE."
 Script: "Operators can purchase a full branded advertising background and a massive billboard on their casino's dedicated RawEdge page. But the review itself? Not for sale. We separate editorial findings from paid advertising. That's how independent research stays independent."
 On screen: "BUY THE BILLBOARD / NOT THE VERDICT / RAWEDGE"
 Caption: "RawEdge sells labeled advertising space. Nobody buys a review score."
