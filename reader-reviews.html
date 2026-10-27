@@ -126,7 +126,7 @@ footer{border-top:1px solid #346b51;padding:28px 19px;text-align:center;color:#c
 <p class="note">RawEdge saves submissions in private storage. Your own story appears below after saving and stays accessible from this browser. Everyone else can read it after editorial approval. Please leave out personal or confidential information.</p>
 </section>
 <section id="community" aria-labelledby="community-heading">
-<div class="feed-top"><div><span class="kicker">READER ACCOUNTS · MODERATED BEFORE PUBLICATION</span><h2 id="community-heading">What other readers are saying.</h2></div><div class="filter"><label for="search">Find a casino</label><input id="search" type="search" placeholder="Search published experiences…" autocomplete="off"></div></div>
+<div class="feed-top"><div><span class="kicker">READER ACCOUNTS · MODERATED BEFORE PUBLICATION</span><h2 id="community-heading">What other readers are saying.</h2><p class="note" id="published-count">Loading the number of approved reader experiences…</p></div><div class="filter"><label for="search">Find a casino</label><input id="search" type="search" placeholder="Search published experiences…" autocomplete="off"></div></div>
 <p class="note">These will be voluntary reader accounts, not independently verified transaction tests, measured payout speeds or RawEdge editorial ratings. Every published entry will be dated and labeled. An advertiser cannot buy or remove a genuine review.</p>
 <div id="reviews" class="review-list" aria-live="polite"><div class="empty"><strong>Loading moderated reader experiences…</strong></div></div>
 </section>
@@ -224,7 +224,7 @@ function draw(){
 }
 get('search').addEventListener('input',draw);
 fetch('/api/public-reader-experiences',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Offline');return r.json()})
-.then(data=>{if(!Array.isArray(data.experiences))throw Error('Invalid');entries=data.experiences.filter(x=>x&&typeof x.casino==='string'&&typeof x.story==='string');draw()})
+.then(data=>{if(!Array.isArray(data.experiences))throw Error('Invalid');entries=data.experiences.filter(x=>x&&typeof x.casino==='string'&&typeof x.story==='string');get('published-count').textContent=entries.length+' approved reader experience'+(entries.length===1?'':'s')+' published. Every story is moderated before appearing here.';draw()})
 .catch(()=>{reviewList.replaceChildren(el('div','The reader wall is temporarily unavailable. Please check back.','empty'))});
 recover();
 })();
