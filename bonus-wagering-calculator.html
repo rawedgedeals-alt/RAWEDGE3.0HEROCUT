@@ -20,6 +20,17 @@ label{font-weight:750;display:block;margin:20px 0 6px}input,select{width:100%;bo
 .hint{font-size:13px;color:#b6cfc5;margin:5px 0 0}.result{border-bottom:1px solid #315044;padding:15px 0}.result:last-child{border-bottom:0}.result span{display:block;color:#d0e4d9}.result strong{display:block;font-size:clamp(27px,4vw,39px);line-height:1.3;color:#72ffb9;font-variant-numeric:tabular-nums}
 .explain{margin:22px 0 0;background:#0d3025;border-radius:12px;padding:17px;color:#def6e7}.note{font-size:14px;color:#bacfc6}.info{padding:18px 23px;background:#10211b;border-left:3px solid #40d992;border-radius:0 12px 12px 0}
 h2{color:#83ffc4}li{margin-bottom:12px;color:#d0dfd7}footer{border-top:1px solid #2e5448;border-bottom:0;text-align:center;color:#c1d7ca;font-size:13px}.links{display:flex;gap:15px;flex-wrap:wrap}
+.share-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;align-items:center}
+.share-row button,.preset-row button{background:#4affb4;color:#042117;border:0;padding:12px 17px;font-weight:900;border-radius:9px;cursor:pointer;font:inherit;font-weight:900}
+.share-row button:nth-child(2){background:#0b3830;color:#a9ffdb;border:1px solid #4ae5a4}
+.share-row .status{font-size:13px;color:#b9ffe0;min-height:20px}
+.preset-row{display:flex;gap:8px;flex-wrap:wrap}
+.preset-row button{font-size:13px;padding:8px 13px;background:#193a32;color:#d9ffec;border:1px solid #398663}
+.compare-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.compare-grid article{border:1px solid #376a57;border-radius:12px;padding:17px;background:#0b2822}
+.compare-grid strong{font-size:clamp(24px,3.5vw,35px);display:block;color:#72ffb9}
+.compare-grid span{font-weight:800;display:block;font-size:14px}
+@media(max-width:570px){.compare-grid{grid-template-columns:1fr}}
 @media(max-width:740px){.layout{grid-template-columns:1fr}.panel{padding:19px}main{padding-top:32px}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"RawEdge Bonus Reality Check","applicationCategory":"FinanceApplication","operatingSystem":"Any","url":"https://www.rawedgecasinoreviews.com/bonus-wagering-calculator.html","description":"Free educational calculator for interpreting casino wagering requirement examples.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
@@ -33,6 +44,7 @@ h2{color:#83ffc4}li{margin-bottom:12px;color:#d0dfd7}footer{border-top:1px solid
 <div class="layout">
 <section class="panel" aria-labelledby="terms-heading">
 <h2 id="terms-heading">Enter the advertised terms</h2>
+<div class="preset-row" aria-label="Try example terms"><button type="button" id="example-one">TRY: $100 AT 100% / 30×</button><button type="button" id="example-two">TRY: $50 AT 200% / 40×</button></div>
 <label for="deposit">Deposit amount (USD)</label><input id="deposit" type="number" inputmode="decimal" min="0" max="1000000" step="1" value="100"><p class="hint">Example only, not a suggested deposit.</p>
 <label for="bonus">Bonus match (%)</label><input id="bonus" type="number" inputmode="decimal" min="0" max="1000" step="5" value="100">
 <label for="multiple">Wagering requirement (×)</label><input id="multiple" type="number" inputmode="decimal" min="0" max="500" step="1" value="30">
@@ -47,6 +59,9 @@ h2{color:#83ffc4}li{margin-bottom:12px;color:#d0dfd7}footer{border-top:1px solid
 <div class="result"><span>Total wagering required under this example</span><strong id="wager-value">$3,000.00</strong></div>
 <p class="explain" id="explain" aria-live="polite">30× the $100 bonus = $3,000 in wagers.</p>
 <p class="note">Wagering is cumulative stakes, not an additional upfront payment. Completing the requirement does not guarantee a remaining balance, winnings or withdrawal eligibility.</p>
+<div class="compare-grid" aria-label="Compare the two playthrough interpretations"><article><span id="only-label">If 30× bonus only:</span><strong id="only-value">$3,000</strong></article><article><span id="both-label">If 30× deposit + bonus:</span><strong id="both-value">$6,000</strong></article></div>
+<p class="hint">Same bonus headline. Different fine print. Compare both, then check the actual operator terms.</p>
+<div class="share-row"><button type="button" id="copy-check">COPY MY REALITY CHECK →</button><button type="button" id="share-check">SHARE THE LINK →</button><span class="status" id="share-status" role="status" aria-live="polite"></span></div>
 </section>
 </div>
 <section aria-labelledby="understanding"><h2 id="understanding">How to check a bonus before claiming it</h2>
@@ -64,18 +79,73 @@ h2{color:#83ffc4}li{margin-bottom:12px;color:#d0dfd7}footer{border-top:1px solid
 (function(){
 const e=id=>document.getElementById(id);
 const money=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(n);
-const val=(id,max)=>{let n=Number(e(id).value);return Number.isFinite(n)?Math.max(0,Math.min(max,n)):0};
-function calculate(){
+const val=(id,max)=>{const n=Number(e(id).value);return Number.isFinite(n)?Math.max(0,Math.min(max,n)):0};
+function state(){
  const deposit=val('deposit',1000000),pct=val('bonus',1000),multiple=val('multiple',500);
- const bonus=deposit*pct/100, balance=deposit+bonus;
- const base=e('base').value==='both'?balance:bonus;
- const wagering=base*multiple;
- e('bonus-value').textContent=money(bonus);
- e('balance-value').textContent=money(balance);
- e('wager-value').textContent=money(wagering);
- e('explain').textContent=multiple+'× '+money(base)+' ('+(e('base').value==='both'?'deposit + bonus':'bonus only')+') = '+money(wagering)+' in wagers.';
+ const bonus=deposit*pct/100, balance=deposit+bonus, both=e('base').value==='both';
+ return {deposit,pct,multiple,bonus,balance,both,wagering:(both?balance:bonus)*multiple};
 }
-['deposit','bonus','multiple','base'].forEach(id=>e(id).addEventListener('input',calculate));calculate();
+function calcLink(s){
+ const url=new URL(location.href);
+ url.searchParams.set('deposit',String(s.deposit));url.searchParams.set('bonus',String(s.pct));
+ url.searchParams.set('multiple',String(s.multiple));url.searchParams.set('base',s.both?'both':'bonus');
+ url.hash='result-heading';
+ return url.toString();
+}
+function calculate(){
+ const s=state(), b=s.both?s.balance:s.bonus;
+ e('bonus-value').textContent=money(s.bonus);
+ e('balance-value').textContent=money(s.balance);
+ e('wager-value').textContent=money(s.wagering);
+ e('only-label').textContent='If '+s.multiple+'× bonus only:';
+ e('only-value').textContent=money(s.bonus*s.multiple);
+ e('both-label').textContent='If '+s.multiple+'× deposit + bonus:';
+ e('both-value').textContent=money(s.balance*s.multiple);
+ e('explain').textContent=s.multiple+'× '+money(b)+' ('+(s.both?'deposit + bonus':'bonus only')+') = '+money(s.wagering)+' in wagers.';
+ e('share-status').textContent='';
+ return s;
+}
+const params=new URLSearchParams(location.search);
+if(params.has('deposit')||params.has('bonus')||params.has('multiple')||params.has('base')){
+ ['deposit','bonus','multiple'].forEach(id=>{
+  const n=Number(params.get(id));
+  const max=Number(e(id).max);
+  if(params.has(id)&&params.get(id).trim()!==''&&Number.isFinite(n)&&n>=0&&n<=max)e(id).value=String(n);
+ });
+ if(['bonus','both'].includes(params.get('base')))e('base').value=params.get('base');
+}
+['deposit','bonus','multiple','base'].forEach(id=>e(id).addEventListener('input',calculate));
+function preset(dep,pct,x){
+ e('deposit').value=dep;e('bonus').value=pct;e('multiple').value=x;e('base').value='bonus';
+ calculate();
+}
+e('example-one').addEventListener('click',()=>preset(100,100,30));
+e('example-two').addEventListener('click',()=>preset(50,200,40));
+async function copy(content){
+ if(navigator.clipboard&&window.isSecureContext){
+  await navigator.clipboard.writeText(content);return true;
+ }
+ const el=document.createElement('textarea');el.value=content;el.style.position='fixed';el.style.left='-9999px';document.body.append(el);el.select();
+ const ok=document.execCommand('copy');el.remove();if(!ok)throw Error('copy unavailable');return true;
+}
+e('copy-check').addEventListener('click',async()=>{
+ const s=state();
+ const text="RAWEDGE BONUS REALITY CHECK\nDeposit: "+money(s.deposit)+
+ "\nBonus: "+s.pct+"% ("+money(s.bonus)+")\nWagering: "+s.multiple+"x "+(s.both?'deposit + bonus':'bonus only')+
+ "\nTotal wagering example: "+money(s.wagering)+"\nBonus-only comparison: "+money(s.bonus*s.multiple)+
+ "\nDeposit+bonus comparison: "+money(s.balance*s.multiple)+
+ "\nExample math only; not a verified promotion or a payout guarantee.\n"+calcLink(s);
+ try{await copy(text);e('share-status').textContent='Copied your numbers and a link.'}
+ catch(_){e('share-status').textContent='Could not copy automatically. Try Share the link.'}
+});
+e('share-check').addEventListener('click',async()=>{
+ const s=state(),url=calcLink(s);
+ try{
+  if(navigator.share){await navigator.share({title:'RawEdge Bonus Reality Check',text:'See what the bonus headline means in actual wagering.',url});e('share-status').textContent='Share sheet opened.'}
+  else{await copy(url);e('share-status').textContent='Shareable link copied.'}
+ }catch(err){if(err.name!=='AbortError')e('share-status').textContent='Could not share. Try Copy my Reality Check.'}
+});
+calculate();
 })();
 </script>
 </body></html>
