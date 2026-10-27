@@ -16,7 +16,7 @@ jobs:
       - name: Check out RawEdge source
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          persist-credentials: false
+          persist-credentials: true
       - name: Install Node.js
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
@@ -36,10 +36,9 @@ jobs:
           set -euo pipefail
           git config user.name "rawedge-growth-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add content/queue content/social-drafts content/published.json articles insights.html sitemap.xml
+          git add -A -- content articles sitemap.xml
+          if test -f insights.html; then git add insights.html; fi
           if ! git diff --cached --quiet; then
             git commit -m "content: publish approved RawEdge research and queue new drafts"
-            git -c http.extraheader="AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)" push origin "HEAD:main"
+            git push origin "HEAD:main"
           fi
-        env:
-          GH_TOKEN: ${{ github.token }}
