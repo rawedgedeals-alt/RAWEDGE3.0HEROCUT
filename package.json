@@ -1,0 +1,10 @@
+{
+  "name": "rawedge-casino-reviews",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Independent RawEdge casino reviews and reader experience submissions",
+  "dependencies": {
+    "@vercel/blob": "^2.3.0"
+  }
+}

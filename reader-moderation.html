@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#07140e">
+<title>RawEdge | Private Reader Moderation</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#07140f;color:#f5fff9;font:16px/1.55 system-ui,sans-serif}
+main{max-width:920px;margin:5vh auto;padding:22px}h1{color:#6affbd}p{color:#d2e9da}input,textarea{padding:12px;border-radius:8px;border:1px solid #409268;background:#0c2c20;color:white;font:inherit;width:100%}
+button{cursor:pointer;border:0;padding:12px 17px;border-radius:8px;background:#50ffb6;color:#06190e;font:inherit;font-weight:900}
+button:disabled{opacity:.5}button.alt{background:#ffd28b}button.dark{background:#184b35;color:#ebfff6}
+.row{display:flex;gap:10px;flex-wrap:wrap}.card{padding:20px;margin:20px 0;border:1px solid #3b8c67;background:#0c2119;border-radius:12px}
+label{display:block;margin:10px 0 5px;font-weight:900}.status{min-height:22px;color:#a7ffd8}
+textarea{min-height:140px}code{color:#ffd28b}a{color:#8fffd4}
+</style>
+</head><body><main>
+<h1>RawEdge · Reader Moderation</h1>
+<p>Private editorial console. Never approve an experience merely because the author or casino has paid us. Review for personal data, threats, unsupported accusations, defamatory content and commercial spam. Do not treat reader stories as first-hand RawEdge payout measurements.</p>
+<section><label for="key">Private moderator key (never saved in the browser)</label><input id="key" type="password" autocomplete="off" placeholder="Moderator key">
+<div class="row" style="margin-top:12px"><button id="load">LOAD PENDING SUBMISSIONS</button><button id="clear" class="dark">CLEAR KEY</button></div>
+<p class="status" id="status" role="status" aria-live="polite"></p></section>
+<section id="queue" aria-live="polite"></section>
+<p><a href="/reader-reviews.html">View public community wall →</a></p>
+</main><script>
+(function(){
+ const get=id=>document.getElementById(id);
+ const q=get('queue'),status=get('status');
+ const item=(tag,text)=>{const e=document.createElement(tag);e.textContent=text||'';return e;};
+ async function request(method,data){
+  const key=get('key').value.trim();
+  if(!key)throw Error('Enter the private moderator key.');
+  const r=await fetch('/api/admin-reader-experiences',{method,headers:{Authorization:'Bearer '+key,...(data?{'Content-Type':'application/json'}:{})},body:data?JSON.stringify(data):undefined,cache:'no-store'});
+  let result=await r.json();
+  if(!r.ok)throw Error(result.error||'Moderation request failed.');
+  return result;
+ }
+ async function load(){
+  q.replaceChildren();status.textContent='Loading private queue…';
+  try{
+   const data=await request('GET');status.textContent=data.displayed+' submissions awaiting moderation.';
+   if(!data.pending.length){q.append(item('p','Nothing pending. Reader stories appear here only when someone submits one.'));return;}
+   for(const x of data.pending){
+    const card=item('article');card.className='card';
+    card.append(item('h2',x.casino),item('p',[x.category,x.sentiment,x.outcome,x.created_at].join(' · ')));
+    const aliasLabel=item('label','Public nickname');card.append(aliasLabel);
+    const alias=item('input');alias.value=x.alias||'Anonymous reader';alias.maxLength=32;card.append(alias);
+    const label=item('label','Reader experience (edit only for safety/clarity)');card.append(label);
+    const body=item('textarea');body.value=x.story;body.maxLength=1800;card.append(body);
+    const actions=item('div');actions.className='row';actions.style.marginTop='12px';
+    const approve=item('button','APPROVE FOR PUBLIC WALL');
+    const reject=item('button','REJECT');reject.className='alt';
+    actions.append(approve,reject);card.append(actions);q.append(card);
+    async function act(decision){
+      const msg=decision==='approve'?'Approve this story for PUBLIC display?':'Reject this submission?';
+      if(!confirm(msg))return;
+      approve.disabled=true;reject.disabled=true;status.textContent='Saving moderation decision…';
+      try{
+       await request('POST',{id:x.id,decision,story:body.value,alias:alias.value});
+       status.textContent='Submission '+decision+'d.';card.remove();
+      }catch(e){status.textContent=e.message;approve.disabled=false;reject.disabled=false;}
+    }
+    approve.addEventListener('click',()=>act('approve'));
+    reject.addEventListener('click',()=>act('reject'));
+   }
+  }catch(e){status.textContent=e.message;}
+ }
+ get('load').addEventListener('click',load);
+ get('clear').addEventListener('click',()=>{get('key').value='';q.replaceChildren();status.textContent='Key cleared.';});
+})();
+</script></body></html>
