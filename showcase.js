@@ -15,17 +15,20 @@
   const response=await fetch('./showcase-sponsors.json',{cache:'no-store'});
   if(!response.ok)return;
   const data=await response.json(),s=data&&data[slug];
-  if(!s||s.active!==true||!s.start||!s.end||!s.headline||!s.destination||!s.creative)return;
+  if(!s||s.active!==true||s.compliance_approved!==true||!s.start||!s.end||!s.headline||!s.destination||!s.creative)return;
   const now=new Date(),start=new Date(s.start+'T00:00:00Z'),end=new Date(s.end+'T23:59:59Z');
   if(!(start<=now&&now<=end))return;
   const url=new URL(s.destination),creative=new URL(s.creative,location.href);
   if(url.protocol!=='https:'||creative.origin!==location.origin)return;
   if(!/^(?:png|jpg|jpeg|webp)$/i.test(creative.pathname.split('.').pop()))return;
+  let skin=null;
+  if(s.background_skin){skin=new URL(s.background_skin,location.href);if(skin.origin!==location.origin||!/^https?:$/.test(skin.protocol)||!/\.(?:png|jpg|jpeg|webp)$/i.test(skin.pathname))return;}
   box.dataset.sponsored='true';label.textContent='PAID ADVERTISEMENT · PREMIUM CASINO SHOWCASE';
   title.textContent=s.headline;text.textContent=s.description||'See the operator’s current terms and eligibility before registering.';
   action.href=url.href;action.textContent=s.cta||'VISIT ADVERTISER →';
   action.target='_blank';action.rel='sponsored nofollow noopener noreferrer';action.hidden=false;
   img.src=creative.href;img.alt=s.creative_alt||'Casino advertising artwork';
+  if(skin){document.body.classList.add('re-skin-active');document.body.style.setProperty('--re-skin-image','url('+JSON.stringify(skin.href)+')');}
   disclosure.textContent='PAID ADVERTISEMENT — This casino purchased promotional space. RawEdge’s independent review and editorial ranking are not for sale. Availability and eligibility vary by location.';
  }catch(_e){/* an absent/invalid campaign should never look like a paid endorsement */}
 })();
