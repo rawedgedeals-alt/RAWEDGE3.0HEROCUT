@@ -10,24 +10,26 @@ root = pathlib.Path(__file__).resolve().parents[1]
 data = json.loads((root / "casinos.json").read_text(encoding="utf-8"))
 errors = []
 warnings = []
-if data.get("schema_version") != 1:
+if data.get("schema_version") != 2:
     errors.append("Unsupported schema_version")
 items = data.get("casinos")
 if not isinstance(items, list) or not items:
     errors.append("casinos must be a nonempty array")
     items = []
 seen_ids = set()
-seen_ranks = set()
+seen_positions = set()
 today = dt.date.today()
 for item in items:
     ident = item.get("id")
-    rank = item.get("rank")
+    listing_order = item.get("listing_order")
     if not isinstance(ident, str) or not ident or ident in seen_ids:
         errors.append("Missing or duplicate casino id")
     seen_ids.add(ident)
-    if not isinstance(rank, int) or rank < 1 or rank in seen_ranks:
-        errors.append(f"{ident}: invalid or duplicate rank")
-    seen_ranks.add(rank)
+    if not isinstance(listing_order, int) or listing_order < 1 or listing_order in seen_positions:
+        errors.append(f"{ident}: invalid or duplicate research-list order")
+    seen_positions.add(listing_order)
+    if item.get("review_status") != "not_scored":
+        warnings.append(f"{ident}: review status requires completed editorial evidence review")
     if not isinstance(item.get("name"), str) or not item["name"].strip():
         errors.append(f"{ident}: missing name")
     if not isinstance(item.get("tags"), list) or not all(isinstance(t, str) for t in item["tags"]):

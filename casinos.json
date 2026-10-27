@@ -1,83 +1,95 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "last_reviewed": null,
-  "editorial_notice": "Offers and availability require independent verification before publication. Rankings are editorial, not purchased.",
+  "editorial_notice": "Listing order is not an editorial rank, rating, endorsement, payout measurement, or certification. Affiliate links are separate from RawEdge independent research; operator terms remain unverified unless sourced.",
   "casinos": [
     {
       "id": "luck-party",
       "name": "Luck Party",
       "category": "Sweepstakes casino",
-      "rank": 1,
       "tags": [
         "Sweepstakes",
         "Redeemable prizes"
       ],
       "affiliate_url": "https://track.luckparty.com/click?o=8&a=102439&c=57",
       "offer_label": "Visit casino",
-      "offer_verified_at": null
+      "offer_verified_at": null,
+      "listing_order": 1,
+      "review_status": "not_scored",
+      "operator_terms_verified": false
     },
     {
       "id": "american-luck",
       "name": "American Luck",
       "category": "Sweepstakes casino",
-      "rank": 2,
       "tags": [
         "Sweepstakes",
         "Offers"
       ],
       "affiliate_url": "https://track.americanluck.com/click?o=7&a=102439&c=50",
       "offer_label": "Visit casino",
-      "offer_verified_at": null
+      "offer_verified_at": null,
+      "listing_order": 2,
+      "review_status": "not_scored",
+      "operator_terms_verified": false
     },
     {
       "id": "yay-casino",
       "name": "Yay Casino",
       "category": "Sweepstakes casino",
-      "rank": 3,
       "tags": [
         "Sweepstakes",
         "Offers"
       ],
       "affiliate_url": "https://track.yaycasino.fun/click?o=5&a=102439&c=28",
       "offer_label": "Visit casino",
-      "offer_verified_at": null
+      "offer_verified_at": null,
+      "listing_order": 3,
+      "review_status": "not_scored",
+      "operator_terms_verified": false
     },
     {
       "id": "betonline",
       "name": "BetOnline",
       "category": "Online casino and sportsbook",
-      "rank": 4,
       "tags": [
         "Casino",
         "Sportsbook"
       ],
       "affiliate_url": "https://record.betonlineaffiliates.ag/_U0BzdTjMAZX-a8CTELPmZWNd7ZgqdRLk/1/",
       "offer_label": "Visit casino",
-      "offer_verified_at": null
+      "offer_verified_at": null,
+      "listing_order": 4,
+      "review_status": "not_scored",
+      "operator_terms_verified": false
     },
     {
       "id": "rakebit",
       "name": "Rakebit",
       "category": "Online casino",
-      "rank": 5,
       "tags": [
         "Casino"
       ],
       "affiliate_url": "https://rake-tracker.com/dqai6fv9s",
       "offer_label": "Visit casino",
-      "offer_verified_at": null
+      "offer_verified_at": null,
+      "listing_order": 5,
+      "review_status": "not_scored",
+      "operator_terms_verified": false
     },
     {
       "id": "gamblezen",
       "name": "Gamblezen",
       "category": "Online casino",
-      "rank": 6,
       "tags": [
         "Casino"
       ],
       "affiliate_url": "https://gamblezens.com/afxfhfnxmg",
       "offer_label": "Visit casino",
-      "offer_verified_at": null
+      "offer_verified_at": null,
+      "listing_order": 6,
+      "review_status": "not_scored",
+      "operator_terms_verified": false
     }
   ]
 }
