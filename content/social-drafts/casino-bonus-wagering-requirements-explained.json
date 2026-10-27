@@ -1,0 +1,15 @@
+{
+  "brand": "rawedge",
+  "status": "draft",
+  "provider_status": "not_connected_to_automation",
+  "article_slug": "casino-bonus-wagering-requirements-explained",
+  "caption": "That giant casino bonus headline? Don't skip the fine print. Before believing a percentage, check wagering requirements, game contribution, withdrawal restrictions, and eligibility. We explain the math using examples—not fake payout promises.\n\nRead the guide: https://www.rawedgecasinoreviews.com/articles/casino-bonus-wagering-requirements-explained.html\n\nIndependent information only. 18+; 21+ where required. #RawEdge #BonusMath",
+  "reel_script": [
+    "HOOK 0–3s: A 200% casino bonus isn't automatically what it sounds like.",
+    "EXPLAIN 3–9s: The wagering multiplier may apply to the bonus—or the entire deposit plus bonus.",
+    "PROOF 9–17s: Use a hypothetical $50 bonus times 30. That's $1,500 in qualifying play, NOT a payout prediction.",
+    "CTA 17–22s: Before you click an offer, check the terms. RawEdge has the math."
+  ],
+  "needs_video_for_reel": true,
+  "needs_platform_policy_review": true
+}
