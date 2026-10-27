@@ -1,8 +1,9 @@
 function subscribe(e){e.preventDefault();const f=e.target;const btn=f.querySelector("button");btn.textContent="Subscribed ✓";btn.disabled=true;f.querySelector("input").value="";}function filterCards(tag,button){document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));button.classList.add("active");document.querySelectorAll(".rank-card").forEach(card=>{card.style.display=tag==="all"||card.dataset.tags.split(" ").includes(tag)?"grid":"none"});}document.querySelector(".menu")?.addEventListener("click",()=>{const nav=document.querySelector(".header nav");if(!nav)return;nav.style.display=nav.style.display==="flex"?"none":"flex";nav.style.position="absolute";nav.style.top="78px";nav.style.left="0";nav.style.right="0";nav.style.padding="20px";nav.style.background="#070b0f";nav.style.flexDirection="column";});
 
-/* Render reviewed casino data when available; retain static cards if unavailable. */
+/* Affiliate data renders only within intentionally opted-in affiliate feeds.
+   Never replace the independent category navigation or research profile cards. */
 (async function loadCasinoCards(){
-  const grid=document.querySelector(".casino-grid");
+  const grid=document.querySelector('[data-casino-feed="affiliate"]');
   if(!grid)return;
   try{
     const response=await fetch("casinos.json",{cache:"no-cache"});
