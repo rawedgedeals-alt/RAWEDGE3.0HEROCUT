@@ -1,0 +1,44 @@
+name: RawEdge Growth Publisher
+on:
+  schedule:
+    - cron: '23 14 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: rawedge-growth-publisher
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out RawEdge source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: true
+      - name: Install Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '24'
+      - name: Generate safe drafts
+        run: node scripts/generate.mjs
+        env:
+          OPENAI_API_KEY: ${{ secrets.CONTENT_GENERATION_API_KEY }}
+          MAX_DRAFTS_PER_RUN: '2'
+      - name: Publish due, editorially approved articles
+        run: node scripts/publish.mjs
+        env:
+          MAX_POSTS_PER_RUN: '3'
+      - name: Commit generated site and draft queue
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "rawedge-growth-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- content articles sitemap.xml
+          if test -f insights.html; then git add insights.html; fi
+          if ! git diff --cached --quiet; then
+            git commit -m "content: publish approved RawEdge research and queue new drafts"
+            git push origin "HEAD:main"
+          fi
