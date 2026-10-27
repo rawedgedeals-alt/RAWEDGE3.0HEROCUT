@@ -6,6 +6,7 @@ const queue = path.join(root, 'content/queue');
 const publishedFile = path.join(root, 'content/published.json');
 const articleDir = path.join(root, 'articles');
 const domain = 'https://www.rawedgecasinoreviews.com';
+const GA='<script async src="https://www.googletagmanager.com/gtag/js?id=G-FO4WYKNV6S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-FO4WYKNV6S");</script><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script><script defer src="/_vercel/insights/script.js"></script>';
 const escapeHtml = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const get = (p, fallback) => fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : fallback;
 const put = (p, content) => { fs.mkdirSync(path.dirname(p), {recursive:true}); fs.writeFileSync(p,content); };
@@ -33,7 +34,7 @@ function articlePage(a) {
     +'<meta name="description" content="'+escapeHtml(a.summary)+'">'
     +'<link rel="canonical" href="'+url+'"><link rel="stylesheet" href="../style.css">'
     +'<meta property="og:title" content="'+escapeHtml(a.title)+'"><meta property="og:description" content="'+escapeHtml(a.summary)+'"><meta property="og:url" content="'+url+'">'
-    +'<script type="application/ld+json">'+JSON.stringify(metadata).replace(/</g,'\\u003c')+'</script>'
+    +GA+'<script type="application/ld+json">'+JSON.stringify(metadata).replace(/</g,'\\u003c')+'</script>'
     +'<style>main{max-width:850px;margin:0 auto;padding:50px 20px 110px}article{line-height:1.75;color:#d2e2dd}article h1{color:white;font-size:clamp(35px,6vw,57px);line-height:1.12}article h2{color:#64ffb2;margin-top:42px}article h3{color:#a5ffd7;margin-top:30px}article p,article li{font-size:17px}.lead{font-size:21px;color:#eafff4;border-left:3px solid #20f59a;padding-left:19px}.article-meta{font-size:12px;color:#70e8b0;letter-spacing:.12em;font-weight:850}.next{margin-top:45px;border-radius:15px;padding:24px;border:1px solid #2bb57e;background:#0b211b}.next a{color:#74ffd1;text-decoration:underline;margin-right:16px}</style>'
     +'</head><body><div class="topbar"><span>RAWEDGE RESEARCH DESK</span><span>18+ only</span><span>No bought rankings</span></div>'
     +'<header class="header"><a class="brand" href="../index.html"><span class="logo">R</span><span>RAW<span>EDGE</span><small>CASINO REVIEWS</small></span></a><nav><a href="../index.html">Home</a><a href="../guides.html">Guides</a><a href="../insights.html">Latest</a></nav></header>'
@@ -46,7 +47,7 @@ function indexPage(items) {
   const cards=items.map(a=>'<article class="casino-card"><span class="eyebrow">'+escapeHtml(a.published_at.slice(0,10))+' · GUIDE</span><h2>'+escapeHtml(a.title)+'</h2><p>'+escapeHtml(a.summary)+'</p><a class="btn small primary" href="articles/'+a.slug+'.html">READ ARTICLE →</a></article>').join('\n');
   return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Latest Casino Education | RawEdge</title>'
     +'<meta name="description" content="Practical independent guides about casino bonus math, payouts, eligibility and player protections."><link rel="canonical" href="'+domain+'/insights.html"><link rel="stylesheet" href="style.css">'
-    +'<style>main{max-width:1180px;margin:auto;padding:40px 20px 100px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:18px}.cards h2{font-size:23px;line-height:1.25}.cards p{color:#c1d4cc;min-height:83px}</style></head><body>'
+    +GA+'<style>main{max-width:1180px;margin:auto;padding:40px 20px 100px}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:18px}.cards h2{font-size:23px;line-height:1.25}.cards p{color:#c1d4cc;min-height:83px}</style></head><body>'
     +'<div class="topbar"><span>THE REVIEWS GAMBLERS WANT</span><span>RESEARCH · NOT PAID RANKINGS</span></div><header class="header"><a class="brand" href="index.html"><span class="logo">R</span><span>RAW<span>EDGE</span><small>CASINO REVIEWS</small></span></a><nav><a href="index.html">Home</a><a href="guides.html">Guides</a><a href="receipt-wall.html">Receipts</a></nav></header>'
     +'<main><section class="page-hero"><span class="eyebrow">THE RAWEDGE RESEARCH DESK</span><h1>THE FACTS.<br><em>WITHOUT THE SPIN.</em></h1><p>Independent education published from an editorially approved queue.</p></section>'
     +'<section class="cards">'+(cards||'<p>Our next researched guide is coming soon.</p>')+'</section></main><footer>© 2026 RawEdge · 18+ · <a href="responsible-gambling.html">Play responsibly</a></footer></body></html>\n';
