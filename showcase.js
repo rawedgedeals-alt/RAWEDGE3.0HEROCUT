@@ -27,6 +27,16 @@
   title.textContent=s.headline;text.textContent=s.description||'See the operator’s current terms and eligibility before registering.';
   action.href=url.href;action.textContent=s.cta||'VISIT ADVERTISER →';
   action.target='_blank';action.rel='sponsored nofollow noopener noreferrer';action.hidden=false;
+  // Track only an actual advertising click. Never log visitor identity or payment details.
+  action.addEventListener('click',function(){
+    if(typeof window.gtag==='function'){
+      window.gtag('event','rawedge_casino_takeover_click',{
+        casino_slug:slug,
+        ad_slot:'casino_profile_billboard',
+        campaign_id:String(s.campaign_id||slug).slice(0,80)
+      });
+    }
+  });
   img.src=creative.href;img.alt=s.creative_alt||'Casino advertising artwork';
   if(skin){document.body.classList.add('re-skin-active');document.body.style.setProperty('--re-skin-image','url('+JSON.stringify(skin.href)+')');}
   disclosure.textContent='PAID ADVERTISEMENT — This casino purchased promotional space. RawEdge’s independent review and editorial ranking are not for sale. Availability and eligibility vary by location.';
