@@ -61,6 +61,43 @@ def check_campaigns():
         if not (ROOT/(slug+".html")).is_file():
             log("ERROR",slug,"Casino profile HTML missing")
     if not active:log("OK","sponsors","No paid campaigns are active")
+def check_receipt_wall():
+    """Prevent publishing unverifiable test badges or fake payout measurements."""
+    try:
+        data=json.loads((ROOT/"receipt-wall.json").read_text(encoding="utf-8"))
+        records=data["records"]
+        if not isinstance(records,list):raise ValueError("Expected array")
+    except (ValueError,TypeError,KeyError,OSError) as exc:
+        log("ERROR","receipt wall",f"Invalid structured evidence ledger: {exc}")
+        return
+    seen=set()
+    for row in records:
+        if not isinstance(row,dict):
+            log("ERROR","receipt wall","Record must be an object")
+            continue
+        slug=row.get("id")
+        if not isinstance(slug,str) or not re.fullmatch(r"[a-z0-9-]+",slug):
+            log("ERROR","receipt wall","Record missing safe ID")
+            continue
+        if slug in seen:log("ERROR",slug,"Duplicate record ID")
+        seen.add(slug)
+        profile=row.get("profile")
+        if profile !=slug+".html" or not (ROOT/profile).is_file():
+            log("ERROR",slug,"Record must link to its matching published casino profile HTML")
+        if row.get("withdrawal_tested") is True and not row.get("withdrawal_evidence_url"):
+            log("ERROR",slug,"Never claim a withdrawal test without a documented evidence reference")
+        if row.get("deposit_tested") is True and not row.get("deposit_evidence_url"):
+            log("ERROR",slug,"Never claim a deposit test without a documented evidence reference")
+        speed=row.get("median_withdrawal_minutes")
+        if speed is not None:
+            if type(speed) not in (int,float) or speed < 0 or speed > 1000000:
+                log("ERROR",slug,"Invalid payout minutes")
+            if row.get("withdrawal_tested") is not True or not row.get("withdrawal_evidence_url"):
+                log("ERROR",slug,"Payout timing requires completed, documented withdrawal evidence")
+            if type(row.get("withdrawal_sample_count")) is not int or row["withdrawal_sample_count"]<3:
+                log("ERROR",slug,"Median payout speed requires at least three documented withdrawal measurements")
+    log("OK","receipt wall",f"Checked {len(records)} transparent research records")
+
 def check_sites():
     for url in SITES:
         try:
@@ -83,6 +120,7 @@ def summarize():
     else:print(content)
 if __name__=="__main__":
     check_campaigns()
+    check_receipt_wall()
     check_sites()
     summarize()
     sys.exit(1 if errors else 0)
