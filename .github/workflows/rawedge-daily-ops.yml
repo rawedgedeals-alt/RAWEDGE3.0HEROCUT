@@ -1,0 +1,28 @@
+name: RawEdge daily website and campaign audit
+on:
+  schedule:
+    - cron: "30 14 * * *" # 8:30 or 9:30 AM US Central, depending on daylight saving
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ".github/workflows/rawedge-daily-ops.yml"
+      - "scripts/daily_ops_check.py"
+      - "showcase-sponsors.json"
+permissions:
+  contents: read
+concurrency:
+  group: rawedge-ops
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Check site availability and sponsor campaign integrity
+        run: python3 scripts/daily_ops_check.py
