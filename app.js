@@ -11,10 +11,10 @@ function subscribe(e){e.preventDefault();const f=e.target;const btn=f.querySelec
     if(!Array.isArray(data.casinos)||!data.casinos.length)return;
     const fragment=document.createDocumentFragment();
     const safeUrl=url=>{try{const parsed=new URL(url);return parsed.protocol==="https:"?parsed.href:null}catch{return null}};
-    for(const item of [...data.casinos].sort((a,b)=>a.rank-b.rank)){
-      if(!item.name||!Number.isInteger(item.rank))continue;
+    for(const item of [...data.casinos].sort((a,b)=>(a.listing_order??999)-(b.listing_order??999))){
+      if(!item.name||!Number.isInteger(item.listing_order))continue;
       const article=document.createElement("article");
-      article.className="casino-card"+(item.rank===1?" featured":"");
+      article.className="casino-card";
       const add=(tag,className,value,parent=article)=>{
         const node=document.createElement(tag);
         if(className)node.className=className;
@@ -22,18 +22,18 @@ function subscribe(e){e.preventDefault();const f=e.target;const btn=f.querySelec
         parent.append(node);
         return node;
       };
-      add("div","rank",String(item.rank).padStart(2,"0"));
-      add("div","casino-logo",item.rank===1?"★":"◆");
+      add("div","rank","—");
+      add("div","casino-logo","◆");
       add("h3","",item.name);
       add("p","muted",item.category||"Casino");
       const rating=add("div","rating","");
-      add("b","",String(item.rank).padStart(2,"0"),rating);
-      add("span","","EDITORIAL LIST",rating);
+      add("b","","—",rating);
+      add("span","","RESEARCH LIST · NOT SCORED",rating);
       const chips=add("div","chips","");
       for(const tag of (Array.isArray(item.tags)?item.tags:[]).slice(0,2))add("span","",tag,chips);
       const url=safeUrl(item.affiliate_url);
       if(url){
-        const link=add("a","btn small "+(item.rank===1?"primary":"ghost"),"Visit casino →");
+        const link=add("a","btn small ghost","Visit operator (affiliate) →");
         link.href=url;link.target="_blank";link.rel="nofollow sponsored noopener noreferrer";
       }
       fragment.append(article);
