@@ -1,5 +1,9 @@
 name: RawEdge daily website and campaign audit
 on:
+  push:
+    paths:
+      - ".github/workflows/rawedge-daily-ops.yml"
+      - "scripts/daily_ops_check.py"
   schedule:
     - cron: "30 14 * * *" # 8:30 or 9:30 AM US Central, depending on daylight saving
   workflow_dispatch:
@@ -38,8 +42,8 @@ jobs:
           AUDIT_OUTCOME: ${{ steps.audit.outcome }}
         run: |
           set -euo pipefail
-          title="RawEdge production audit needs attention"
-          existing="$(gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title == "RawEdge production audit needs attention") | .number' | head -n 1)"
+          title="RawEdge and WHATIF production health needs attention"
+          existing="$(gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title == "RawEdge and WHATIF production health needs attention") | .number' | head -n 1)"
           run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           if [[ "$AUDIT_OUTCOME" != "success" ]]; then
             if [[ -z "$existing" ]]; then
