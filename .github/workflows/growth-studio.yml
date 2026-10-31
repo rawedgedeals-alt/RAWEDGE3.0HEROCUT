@@ -1,0 +1,50 @@
+name: Growth Studio - daily video briefs (no paid rendering)
+on:
+  schedule:
+    # 5:13/6:13 AM US Central, prior to the morning posting window.
+    - cron: '13 11 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: growth-studio-briefs
+  cancel-in-progress: false
+jobs:
+  build-briefs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out both-brand creative planning source
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.12'
+      - name: Generate morning and evening briefs for both brands
+        run: python growth-studio/plan.py --output growth-studio/output
+      - name: Validate all briefs are genuine-motion video requirements
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          items=list(Path('growth-studio/output').glob('*.json'))
+          assert len(items)==4, f'Expected four briefs, got {len(items)}'
+          brands=set()
+          for file in items:
+              b=json.loads(file.read_text())
+              brands.add((b['brand'],b['slot']))
+              assert b['duration_seconds']==14 and b['video_required'] is True
+              assert b['image_only_or_slideshow_forbidden'] is True
+              assert b['status']=='brief_ready_video_not_generated'
+              assert b['estimated_external_spend_usd']==0
+          assert brands=={('rawedge','morning'),('rawedge','evening'),('whatif','morning'),('whatif','evening')}
+          print('Validated four real-motion production briefs. NO VIDEO GENERATED OR POSTED.')
+          PY
+      - name: Save draft brief archive (14 days)
+        uses: actions/upload-artifact@v4
+        with:
+          name: growth-studio-briefs
+          path: growth-studio/output/*.json
+          retention-days: 14
