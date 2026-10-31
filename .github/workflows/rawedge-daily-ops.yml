@@ -10,6 +10,7 @@ on:
       - "showcase-sponsors.json"
 permissions:
   contents: read
+  issues: write
 concurrency:
   group: rawedge-ops
   cancel-in-progress: true
@@ -25,4 +26,29 @@ jobs:
         with:
           python-version: "3.11"
       - name: Check site availability and sponsor campaign integrity
+        id: audit
+        continue-on-error: true
         run: python3 scripts/daily_ops_check.py
+
+      - name: Keep one maintenance issue open only when the audit fails
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          AUDIT_OUTCOME: ${{ steps.audit.outcome }}
+        run: |
+          set -euo pipefail
+          title="RawEdge production audit needs attention"
+          existing="$(gh issue list --state open --limit 100 --json number,title --jq '.[] | select(.title == "RawEdge production audit needs attention") | .number' | head -n 1)"
+          run_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [[ "$AUDIT_OUTCOME" != "success" ]]; then
+            if [[ -z "$existing" ]]; then
+              gh issue create --title "$title" --body "An automated production check failed. Review the workflow log: $run_url\n\nThis alert stays open until a later successful check. No content, advertisements, or paid integrations are changed automatically."
+            fi
+          elif [[ -n "$existing" ]]; then
+            gh issue comment "$existing" --body "Checks recovered: $run_url. Closing the maintenance alert."
+            gh issue close "$existing" --reason completed
+          fi
+      - name: Preserve failed audit status
+        if: steps.audit.outcome != 'success'
+        run: exit 1
