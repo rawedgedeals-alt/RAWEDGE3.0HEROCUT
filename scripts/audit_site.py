@@ -23,9 +23,11 @@ for path in ("/", "/casinos.html", "/casinos.json", "/app.js", "/style.css"):
 
 if "/" in responses:
     home = responses["/"].decode("utf-8")
-    for ref in ("casinos.json", "app.js", "casinos.html"):
+    for ref in ("app.js", "casinos.html"):
         if ref not in home:
             errors.append("Homepage missing " + ref)
+    if "/app.js" in responses and "casinos.json" not in responses["/app.js"].decode("utf-8"):
+        errors.append("app.js missing casinos.json")
 
 if "/casinos.json" in responses:
     try:
