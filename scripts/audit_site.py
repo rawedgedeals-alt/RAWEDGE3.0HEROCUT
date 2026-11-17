@@ -38,7 +38,7 @@ if "/casinos.json" in responses:
         for casino in casinos:
             name = casino.get("name", "unknown")
             cid = casino.get("id")
-            rank = casino.get("rank")
+            rank = casino.get("listing_order")
             if not cid or cid in ids:
                 errors.append(name + ": missing or duplicate ID")
             ids.add(cid)
