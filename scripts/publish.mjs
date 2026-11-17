@@ -6,7 +6,7 @@ const queue = path.join(root, 'content/queue');
 const publishedFile = path.join(root, 'content/published.json');
 const articleDir = path.join(root, 'articles');
 const domain = 'https://www.rawedgecasinoreviews.com';
-const GA='<script async src="https://www.googletagmanager.com/gtag/js?id=G-FO4WYKNV6S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-FO4WYKNV6S");</script><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script><script defer src="/_vercel/insights/script.js"></script>';
+const GA='<script async src="https://www.googletagmanager.com/gtag/js?id=G-F04WYKNV6S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-F04WYKNV6S");</script><script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script><script defer src="/_vercel/insights/script.js"></script>';
 const escapeHtml = v => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const get = (p, fallback) => fs.existsSync(p) ? JSON.parse(fs.readFileSync(p, 'utf8')) : fallback;
 const put = (p, content) => { fs.mkdirSync(path.dirname(p), {recursive:true}); fs.writeFileSync(p,content); };
