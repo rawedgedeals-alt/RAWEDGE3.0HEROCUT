@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wagering Calculator: Do the Math the Casino Hopes You Skip | RawEdge Casino Reviews</title>
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="description" content="Free wagering calculator: enter a bonus, its playthrough requirement and your game's contribution rate to see the total you must actually bet before withdrawing — and roughly how many bets that means.">
+<link rel="canonical" href="https://www.rawedgecasinoreviews.com/wagering-calculator.html">
+<meta property="og:title" content="Wagering Calculator: Do the Math the Casino Hopes You Skip"><meta property="og:description" content="A $100 bonus at 30× is $3,000 in bets — before game contribution makes it worse. Run your own numbers, free, no sign-up.">
+<meta property="og:url" content="https://www.rawedgecasinoreviews.com/wagering-calculator.html">
+<link rel="stylesheet" href="style.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F04WYKNV6S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-F04WYKNV6S");</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)}</script><script defer src="/_vercel/insights/script.js"></script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "RawEdge Wagering Calculator", "applicationCategory": "FinanceApplication", "operatingSystem": "Any", "url": "https://www.rawedgecasinoreviews.com/wagering-calculator.html", "description": "Free educational calculator that turns a casino bonus and its wagering requirement into the total amount a player must bet before withdrawing, adjusted for game contribution.", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "datePublished": "2026-11-19", "dateModified": "2026-11-19", "publisher": {"@type": "Organization", "name": "RawEdge Casino Reviews", "url": "https://www.rawedgecasinoreviews.com/"}, "inLanguage": "en"}</script>
+<style>
+.calc{border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,var(--panel2),var(--panel));padding:26px;margin:26px 0}
+.calc h2{margin-top:0}
+.calc label{display:block;font-weight:750;margin:18px 0 6px;font-size:15px}
+.calc input,.calc select{width:100%;border:1px solid #2a3941;border-radius:10px;padding:12px;background:#05080b;color:#fff;font-size:18px;outline:none}
+.calc input:focus-visible,.calc select:focus-visible{outline:3px solid var(--cyan);outline-offset:2px}
+.calc .hint{font-size:13px;color:var(--muted);margin:5px 0 0}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 22px}
+@media(max-width:700px){.calc-grid{grid-template-columns:1fr}}
+.calc-results{border-top:1px solid var(--line);margin-top:24px;padding-top:20px}
+.calc-results .big{font-size:clamp(30px,5vw,44px);font-weight:1000;color:var(--green);line-height:1.15;font-variant-numeric:tabular-nums}
+.calc-results .lbl{color:var(--muted);font-size:13px;font-weight:800;letter-spacing:.06em}
+.calc-results .bets{font-size:clamp(20px,3vw,26px);font-weight:900;color:#fff;font-variant-numeric:tabular-nums}
+.verdict{margin:18px 0 0;padding:16px 18px;border-radius:12px;border-left:3px solid var(--green);background:#0a1210;color:#d8e6dd}
+.verdict.warn{border-left-color:var(--gold)}
+.verdict.trap{border-left-color:var(--red)}
+.calc .formula{font-size:14px;color:var(--muted);margin-top:14px}
+</style></head>
+<body><div class="topbar"><span>RAWEDGE RESEARCH DESK</span><span>INDEPENDENT EDUCATION • NO BOUGHT RANKINGS</span><span>18+ only</span></div>
+<header class="header"><a class="brand" href="index.html"><span class="logo">R</span><span>RAW<span>EDGE</span><small>CASINO REVIEWS</small></span></a><nav><a href="index.html">Home</a><a href="guides.html">Guides</a><a href="insights.html">Latest Research</a></nav></header>
+<main><article><span class="eyebrow">RAWEDGE EDUCATION · NOV 19, 2026</span><h1>Wagering calculator. <em>Do the math the casino hopes you skip.</em></h1><p class="lead">🔞 18+ only. Online casinos only. Affiliate disclosure: we may earn a commission. 18+ Play responsibly.</p>
+<p class="eyebrow">RAWEDGE / WAGERING CALCULATOR</p>
+
+<p>A bonus headline is a marketing number. The wagering requirement is the price. This free tool converts any offer into the only figure that matters — the total you must actually bet before the money can be withdrawn — using nothing but your own inputs. No sign-up, and the calculation never leaves your browser.</p>
+<p class="notice"><strong>RawEdge rule:</strong> this calculator does arithmetic, not evaluation. It cannot tell you whether an offer is good, and it uses no operator's data. The casino's current terms decide what counts — always confirm the wagering base and the contribution table in the terms themselves.</p>
+
+<section class="calc" aria-labelledby="calc-heading">
+<h2 id="calc-heading">Run your numbers</h2>
+<div class="calc-grid">
+<div>
+<label for="wc-deposit">Your deposit ($)</label>
+<input id="wc-deposit" type="number" inputmode="decimal" min="0" max="1000000" step="1" value="100">
+<p class="hint">What you plan to put in. Only needed if the wagering applies to deposit + bonus.</p>
+</div>
+<div>
+<label for="wc-bonus">Bonus amount ($)</label>
+<input id="wc-bonus" type="number" inputmode="decimal" min="0" max="1000000" step="1" value="100">
+<p class="hint">Enter the bonus dollars directly. Offer says "100% match"? The bonus equals your deposit. Stated as a percent instead? Use the helper below.</p>
+</div>
+<div>
+<label for="wc-pct">Bonus percent helper (optional)</label>
+<input id="wc-pct" type="number" inputmode="decimal" min="0" max="10000" step="5" placeholder="e.g. 100">
+<p class="hint">Type a match percent and the bonus amount above fills in from your deposit.</p>
+</div>
+<div>
+<label for="wc-multiple">Wagering requirement (×)</label>
+<input id="wc-multiple" type="number" inputmode="decimal" min="0" max="1000" step="1" value="30">
+<p class="hint">The playthrough multiplier in the terms — 20×, 30×, 40× and higher are all common.</p>
+</div>
+<div>
+<label for="wc-base">What does the wagering apply to?</label>
+<select id="wc-base">
+<option value="bonus" selected>Bonus only</option>
+<option value="both">Deposit + bonus</option>
+</select>
+<p class="hint">Same multiplier, very different price. The terms state which one — find the exact wording.</p>
+</div>
+<div>
+<label for="wc-contrib">Game contribution (%)</label>
+<input id="wc-contrib" type="number" inputmode="decimal" min="0" max="100" step="1" value="100">
+<p class="hint">Slots usually count 100%. Table games often count far less — sometimes 10% or nothing at all. Check the casino's terms for the games you actually play; a lower contribution means more total betting to clear the same requirement.</p>
+</div>
+<div>
+<label for="wc-bet">Your average bet size ($, optional)</label>
+<input id="wc-bet" type="number" inputmode="decimal" min="0" max="100000" step="0.5" placeholder="e.g. 2">
+<p class="hint">Optional — see roughly how many individual bets the total below really means.</p>
+</div>
+</div>
+<div class="calc-results" aria-live="polite">
+<div class="lbl">TOTAL YOU MUST WAGER BEFORE WITHDRAWING</div>
+<div class="big" id="wc-total">$3,000.00</div>
+<div class="lbl" style="margin-top:16px">AT YOUR AVERAGE BET, THAT IS ROUGHLY</div>
+<div class="bets" id="wc-bets">Add an average bet size to see the bet count.</div>
+<p class="verdict" id="wc-verdict">This is the trap: a small bonus that takes thousands in bets to unlock. The headline number is not the price — this total is.</p>
+<p class="formula" id="wc-formula">$100 bonus × 30 = $3,000 · at 100% contribution you must place $3,000 in bets.</p>
+</div>
+</section>
+
+<h2>What a wagering requirement actually is</h2>
+<p>A wagering (playthrough) requirement is the total amount of eligible bets a promotion demands before bonus money — and usually any winnings from it — can be withdrawn. It is not a fee and it is not a single bet: it is cumulative stakes, added up bet after bet. Until the counter reaches the total, the cashier stays locked no matter what your balance says.</p>
+
+<h2>Why the base changes everything</h2>
+<p>"30×" is only half a sentence. 30× the <em>bonus</em> and 30× the <em>deposit plus bonus</em> are different prices wearing the same headline: on a $100 deposit with a $100 bonus, the first is $3,000 of betting and the second is $6,000. Operators are not obliged to make the base obvious. Our walkthrough of <a href="articles/how-to-read-casino-bonus-terms.html">how to read casino bonus terms</a> shows where the exact calculation hides in a real terms page.</p>
+
+<h2>Why game contribution is the quiet multiplier</h2>
+<p>Not every bet counts in full. Terms carry a contribution table: slots commonly count 100% of each bet toward the requirement, while table games, live casino and some other categories often count far less — and a few count zero. Contribution stretches the requirement by simple division. A $3,000 requirement at 100% contribution takes $3,000 of bets. Play only games that count 10%, and the same bonus takes <strong>$30,000</strong> of bets to clear. Players who skip the contribution table are doing the casino's favorite kind of math: none.</p>
+
+<h2>Worked example</h2>
+<p>Deposit $100, take a $100 bonus, wagering 30× on the bonus only, playing slots at 100% contribution: $100 × 30 = <strong>$3,000</strong> in total bets before anything can be withdrawn. At a $2 average bet, that is roughly <strong>1,500 bets</strong>. Switch the base to deposit + bonus and the same offer becomes $6,000 — about 3,000 bets. Nothing about the headline changed. Only the fine print did.</p>
+
+<h2>Before you deposit</h2>
+<ul>
+<li>Find the wagering base in the terms — bonus only, or deposit + bonus?</li>
+<li>Find the contribution rate for the games you actually play.</li>
+<li>Check the deadline, the maximum bet while wagering, and any maximum cashout on bonus winnings.</li>
+<li>Run the total here and ask honestly whether you would place that much play anyway, bonus or no bonus.</li>
+</ul>
+<p>If the answer is no, the bonus is not a discount — it is a commitment you are buying. Clearing a requirement also never guarantees a remaining balance or a profit; it only unlocks the door.</p>
+
+<p><a href="articles/how-to-read-casino-bonus-terms.html">How to read bonus terms →</a> · <a href="casino-payouts.html">Casino payouts guide →</a> · <a href="casinos.html">Casino reviews →</a> · <a href="fine-print-hunt.html">The $100 Fine Print Hunt →</a> · <a href="responsible-gambling.html">Responsible gaming →</a></p>
+<p>18+ Play responsibly. Bonuses are optional. Never deposit money you cannot afford to lose in pursuit of a wagering target.</p>
+<div class="next"><h2>Run the numbers. Then read the terms.</h2><p>This tool is educational, not a verified offer or recommendation. Always verify current terms and restrictions; gambling is not an income strategy.</p><a href="articles/how-to-read-casino-bonus-terms.html">Bonus terms walkthrough</a><a href="casino-payouts.html">Payouts guide</a><a href="responsible-gambling.html">Play responsibly</a></div></article></main>
+<footer>© 2026 RawEdge Casino Reviews · 18+ and 21+ where required. Ads do not influence editorial findings.</footer>
+<script src="app.js"></script>
+<script>
+(function(){
+var e=function(id){return document.getElementById(id)};
+function num(id,max){var n=parseFloat(e(id).value);if(!isFinite(n)||n<0)return 0;return Math.min(n,max)}
+function money(n){return n.toLocaleString('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2,maximumFractionDigits:2})}
+function calc(){
+ var deposit=num('wc-deposit',1000000),
+     bonus=num('wc-bonus',1000000),
+     mult=num('wc-multiple',1000),
+     contrib=num('wc-contrib',100),
+     bet=num('wc-bet',100000),
+     both=e('wc-base').value==='both',
+     base=both?(deposit+bonus):bonus,
+     raw=base*mult,
+     verdictEl=e('wc-verdict'),
+     verdict,cls;
+ if(contrib<=0){
+   e('wc-total').textContent='Never clears';
+   e('wc-bets').textContent='At 0% contribution, no amount of betting on that game moves the counter.';
+   verdict='A 0% contribution means this game never clears the requirement — every bet counts for nothing. Check the terms for a game that counts, or skip the bonus.';
+   cls='verdict trap';
+   e('wc-formula').textContent='Games that contribute 0% add nothing to the wagering counter, however much you bet.';
+ } else {
+   var total=raw/(contrib/100);
+   e('wc-total').textContent=money(total);
+   if(bet>0){
+     e('wc-bets').textContent='≈ '+Math.ceil(total/bet).toLocaleString('en-US')+' bets at '+money(bet)+' each';
+   } else {
+     e('wc-bets').textContent='Add an average bet size to see the bet count.';
+   }
+   if(total<500){verdict='Manageable on paper — still read the terms: the deadline, the max-bet rule and any cashout cap decide whether it stays that way.';cls='verdict'}
+   else if(total<=2500){verdict='Steep. That is real play volume for a bonus this size — check the deadline and your normal stakes before you commit.';cls='verdict warn'}
+   else{verdict='This is the trap: a small bonus that takes thousands in bets to unlock. The headline number is not the price — this total is.';cls='verdict trap'}
+   e('wc-formula').textContent=money(base)+' ('+(both?'deposit + bonus':'bonus only')+') × '+mult+' = '+money(raw)+' · at '+contrib+'% contribution you must place '+money(total)+' in bets.';
+ }
+ verdictEl.textContent=verdict;
+ verdictEl.className=cls;
+}
+['wc-deposit','wc-bonus','wc-multiple','wc-base','wc-contrib','wc-bet'].forEach(function(id){
+ e(id).addEventListener('input',calc);
+ e(id).addEventListener('change',calc);
+});
+e('wc-pct').addEventListener('input',function(){
+ var pct=parseFloat(e('wc-pct').value);
+ if(isFinite(pct)&&pct>=0){
+   var dep=num('wc-deposit',1000000);
+   e('wc-bonus').value=Math.round(dep*Math.min(pct,10000))/100;
+ }
+ calc();
+});
+e('wc-deposit').addEventListener('input',function(){
+ var pct=parseFloat(e('wc-pct').value);
+ if(isFinite(pct)&&pct>=0&&e('wc-pct').value!==''){
+   var dep=num('wc-deposit',1000000);
+   e('wc-bonus').value=Math.round(dep*Math.min(pct,10000))/100;
+ }
+ calc();
+});
+calc();
+})();
+</script>
+</body></html>
